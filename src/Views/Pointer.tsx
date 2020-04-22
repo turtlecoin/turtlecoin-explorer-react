@@ -22,7 +22,7 @@ class Pointer extends Component<Props, State> {
   async componentDidMount() {
     const { match } = this.props;
     const res = await axios.get(
-      `https://karai.extrahash.org/pointer/${match.params.hash}`
+      `${process.env.REACT_APP_API_URI}/pointer/${match.params.hex}`
     );
     this.setState({
       pointer: res.data.data,
@@ -31,9 +31,10 @@ class Pointer extends Component<Props, State> {
 
   render() {
     const { pointer } = this.state;
+    const { match } = this.props;
     return (
       <div className="container react-root">
-        <h1 className="title">{pointer[0] && pointer[0].hash}</h1>
+        <h1 className="title">{match.params.hex}</h1>
         <div className=" highlight-wrapper atom-one-light">
           <Highlight language="english">
             {JSON.stringify(pointer[0], null, 2)}

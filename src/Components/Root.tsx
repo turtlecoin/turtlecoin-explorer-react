@@ -33,7 +33,7 @@ class Root extends Component<Props, State> {
   }
 
   async getPointers() {
-    const res = await axios.get('https://karai.extrahash.org/pointers');
+    const res = await axios.get(process.env.REACT_APP_API_URI + '/pointers');
     this.setState({
       pointers: res.data.data,
     });
@@ -52,8 +52,8 @@ class Root extends Component<Props, State> {
               <h1 className="title">Karai Pointers</h1>
               {pointers.map((pointer: any) => (
                 <Link
-                  to={`/pointer/${pointer.hash}`}
-                  key={pointer.hash}
+                  to={`/pointer/${pointer.hex}`}
+                  key={pointer.hex}
                   className="highlight-wrapper atom-one-light"
                 >
                   <Highlight language="english">
