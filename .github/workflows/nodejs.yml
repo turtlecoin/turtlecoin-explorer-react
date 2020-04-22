@@ -1,0 +1,33 @@
+name: Typescript/React App CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    # there's some issue with eslint 6.x, need to figure out how to fix
+    # https://github.com/microsoft/vscode-eslint/issues/696#issuecomment-519936333
+    # - name: Lint Code
+    #   run: |
+    #      yarn eslint
+    #   env:
+    #      CI: true
+    - name: Install Dependencies
+      run: |
+        yarn
+      env:
+        CI: true
+    - name: Build
+      run: |
+        yarn build
+      env:
+        CI: true

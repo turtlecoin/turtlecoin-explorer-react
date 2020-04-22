@@ -1,0 +1,11 @@
+@import '../../node_modules/bulma/bulma.sass';
+
+.react-root {
+    padding-top: 20px;
+}
+
+.highlight-wrapper > pre {
+    background-color: transparent;
+    padding: 0;
+    padding-bottom: 20px;
+  }
