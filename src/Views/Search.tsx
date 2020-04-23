@@ -14,7 +14,7 @@ export class Search extends Component<Props, State> {
     return (
       <div className="container react-root">
         <header>
-          <nav className="breadcrumb is-family-monospace" aria-label="breadcrumbs">
+          <nav className="breadcrumb" aria-label="breadcrumbs">
             <ul>
               <li>
                 <a href="/">Karai Explorer</a>
@@ -27,6 +27,10 @@ export class Search extends Component<Props, State> {
         </header>
         <main>
           <Searchbar query={match.params.query} />
+          <p>
+            Search results for{' '}
+            <strong>{decodeURIComponent(match.params.query)}</strong>
+          </p>
           <div className="highlight-wrapper github pointer-details">
             <Highlight language="english">
               {JSON.stringify(match, null, 2)}

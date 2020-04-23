@@ -15,7 +15,7 @@ export class Searchbar extends Component<State, Props> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      query: this.props.query || '',
+      query: decodeURIComponent(this.props.query) || '',
     };
   }
 
@@ -44,8 +44,8 @@ export class Searchbar extends Component<State, Props> {
         <div className="control">
           <Link
             ref={(ref) => (this.submitRef = ref)}
-            className="button is-info is-family-monospace"
-            to={`/search/${query}`}
+            className="button is-info"
+            to={`/search/${encodeURIComponent(query)}`}
             onClick={(event: any) => {
               const { query } = this.state;
               if (query.trim() === '') {

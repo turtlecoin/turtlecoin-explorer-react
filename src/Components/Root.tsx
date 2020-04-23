@@ -75,10 +75,7 @@ class Root extends Component<Props, State> {
             render={() => (
               <div className="container react-root">
                 <header>
-                  <nav
-                    className="breadcrumb is-family-monospace"
-                    aria-label="breadcrumbs"
-                  >
+                  <nav className="breadcrumb" aria-label="breadcrumbs">
                     <ul>
                       <li className="is-active">
                         <a href="/">Karai Explorer</a>
@@ -88,36 +85,42 @@ class Root extends Component<Props, State> {
                 </header>
                 <main>
                   <Searchbar query="" />
-                  <table className="table is-fullwidth is-scrollable is-hoverable is-narrow is-striped is-family-monospace">
-                    <thead>
-                      <tr>
-                        <th />
-                        <th>ASCII</th>
-                        <th>Hex</th>
-                        <th>Timestamp</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {pointers.map((pointer: any) => (
+                  <div className="table-wrapper">
+                    <table className="table is-fullwidth is-scrollable is-hoverable is-striped is-family-monospace">
+                      <thead>
                         <tr>
-                          <td>
-                            <Link
-                              to={`/pointer/${pointer.hex}`}
-                              aria-label="expand more details"
-                            >
-                              {' '}
-                              <FontAwesomeIcon icon={faExpand} />
-                            </Link>
-                          </td>
-                          <td>{pointer.ascii}</td>
-                          <td>{pointer.hex}</td>
-                          <td>
-                            {new Date(pointer.timestamp).toLocaleString()}
-                          </td>
+                          <th />
+                          <th>ASCII</th>
+                          <th>Hex</th>
+                          <th>Timestamp</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {pointers.map((pointer: any) => (
+                          <tr>
+                            <td>
+                              <Link
+                                to={`/pointer/${pointer.hex}`}
+                                aria-label="expand more details"
+                              >
+                                {' '}
+                                <FontAwesomeIcon icon={faExpand} />
+                              </Link>
+                            </td>
+                            <td>{pointer.ascii}</td>
+                            <td>
+                              <span className="translucent pointer-text-piece">{pointer.hex.substring(0, 8)}</span>
+                              <span className="pointer-text-piece">{pointer.hex.substring(8, 20)}</span>
+                              <span className="translucent pointer-text-piece">{pointer.hex.substring(20, 22)}</span>
+                            </td>
+                            <td>
+                              {new Date(pointer.timestamp).toLocaleString()}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                   {pointers.length > 0 && (
                     <div
                       className="button"

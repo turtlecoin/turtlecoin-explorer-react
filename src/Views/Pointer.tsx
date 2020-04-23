@@ -36,10 +36,7 @@ class Pointer extends Component<Props, State> {
     return (
       <div className="container react-root">
         <header>
-          <nav
-            className="breadcrumb is-family-monospace"
-            aria-label="breadcrumbs"
-          >
+          <nav className="breadcrumb" aria-label="breadcrumbs">
             <ul>
               <li>
                 <a href="/">Karai Explorer</a>
