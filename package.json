@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@babel/core": "7.9.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@fortawesome/react-fontawesome": "^0.1.9",
     "@svgr/webpack": "4.3.3",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -59,6 +62,7 @@
     "react-dom": "^16.13.1",
     "react-highlight.js": "^1.0.7",
     "react-router-dom": "^5.1.2",
+    "react-tooltip": "^4.2.5",
     "resolve": "1.15.0",
     "resolve-url-loader": "3.1.1",
     "sass-loader": "8.0.2",

@@ -1,37 +1,15 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Highlight from 'react-highlight.js';
 import { Searchbar } from '../Components/Searchbar';
 
-type State = {
-  pointer: any;
-};
+type State = {};
 
 type Props = {
   match: any;
 };
 
-class Pointer extends Component<Props, State> {
-  state: State;
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      pointer: [],
-    };
-  }
-
-  async componentDidMount() {
-    const { match } = this.props;
-    const res = await axios.get(
-      `${process.env.REACT_APP_API_URI}/pointer/${match.params.hex}`
-    );
-    this.setState({
-      pointer: res.data.data,
-    });
-  }
-
+export class Search extends Component<Props, State> {
   render() {
-    const { pointer } = this.state;
     const { match } = this.props;
     return (
       <div className="container react-root">
@@ -45,17 +23,17 @@ class Pointer extends Component<Props, State> {
               </li>
               <li className="is-active">
                 <h2 className="subtitle">
-                  <a href=".">{match.params.hex}</a>
+                  <a href=".">Search</a>
                 </h2>
               </li>
             </ul>
           </nav>
         </header>
         <main>
-          <Searchbar query="" />
+          <Searchbar query={match.params.query} />
           <div className="highlight-wrapper github pointer-details">
             <Highlight language="english">
-              {JSON.stringify(pointer[0], null, 2)}
+              {JSON.stringify(match, null, 2)}
             </Highlight>
           </div>
         </main>
@@ -63,5 +41,3 @@ class Pointer extends Component<Props, State> {
     );
   }
 }
-
-export default Pointer;
