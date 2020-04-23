@@ -75,19 +75,20 @@ class Root extends Component<Props, State> {
             render={() => (
               <div className="container react-root">
                 <header>
-                  <nav className="breadcrumb" aria-label="breadcrumbs">
+                  <nav
+                    className="breadcrumb is-family-monospace"
+                    aria-label="breadcrumbs"
+                  >
                     <ul>
                       <li className="is-active">
-                        <a href="/">
-                          <h2 className="subtitle">Karai Explorer</h2>
-                        </a>
+                        <a href="/">Karai Explorer</a>
                       </li>
                     </ul>
                   </nav>
                 </header>
                 <main>
                   <Searchbar query="" />
-                  <table className="table is-fullwidth">
+                  <table className="table is-fullwidth is-scrollable is-hoverable is-narrow is-striped is-family-monospace">
                     <thead>
                       <tr>
                         <th />

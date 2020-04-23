@@ -14,17 +14,13 @@ export class Search extends Component<Props, State> {
     return (
       <div className="container react-root">
         <header>
-          <nav className="breadcrumb" aria-label="breadcrumbs">
+          <nav className="breadcrumb is-family-monospace" aria-label="breadcrumbs">
             <ul>
               <li>
-                <h2 className="subtitle">
-                  <a href="/">Karai Explorer</a>
-                </h2>
+                <a href="/">Karai Explorer</a>
               </li>
               <li className="is-active">
-                <h2 className="subtitle">
-                  <a href=".">Search</a>
-                </h2>
+                <a href=".">Search</a>
               </li>
             </ul>
           </nav>

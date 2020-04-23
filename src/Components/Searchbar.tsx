@@ -5,7 +5,7 @@ type Props = {
   query: string;
 };
 type State = {
-    query: string;
+  query: string;
 };
 
 export class Searchbar extends Component<State, Props> {
@@ -25,7 +25,7 @@ export class Searchbar extends Component<State, Props> {
       <div className="field has-addons searchbar">
         <div className="control is-fullwidth">
           <input
-            className="input"
+            className="input is-family-monospace"
             type="text"
             placeholder="Search the explorer"
             value={query}
@@ -44,7 +44,7 @@ export class Searchbar extends Component<State, Props> {
         <div className="control">
           <Link
             ref={(ref) => (this.submitRef = ref)}
-            className="button is-info"
+            className="button is-info is-family-monospace"
             to={`/search/${query}`}
             onClick={(event: any) => {
               const { query } = this.state;
