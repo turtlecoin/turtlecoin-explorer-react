@@ -34,8 +34,17 @@ class Pointer extends Component<Props, State> {
     const { match } = this.props;
     return (
       <div className="container react-root">
-        <h1 className="title">{match.params.hex}</h1>
-        <div className=" highlight-wrapper atom-one-light">
+        <nav className="breadcrumb" aria-label="breadcrumbs">
+          <ul>
+            <li>
+              <a href="/">Karai Explorer</a>
+            </li>
+            <li className="is-active">
+              <a href=".">{match.params.hex}</a>
+            </li>
+          </ul>
+        </nav>
+        <div className="highlight-wrapper github">
           <Highlight language="english">
             {JSON.stringify(pointer[0], null, 2)}
           </Highlight>

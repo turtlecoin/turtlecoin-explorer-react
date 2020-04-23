@@ -6,7 +6,8 @@ import { Link, Route, Switch } from 'react-router-dom';
 import Pointer from '../Views/Pointer';
 
 type State = {
-  pointers: [];
+  pointers: any[];
+  offset: number;
 };
 
 type Props = {};
@@ -18,6 +19,7 @@ class Root extends Component<Props, State> {
     super(props);
     this.state = {
       pointers: [],
+      offset: 0,
     };
     this.getPointers = this.getPointers.bind(this);
     this.interval = null;
@@ -25,17 +27,24 @@ class Root extends Component<Props, State> {
 
   async componentDidMount() {
     await this.getPointers();
-    this.interval = setInterval(this.getPointers, 10000);
-  }
-
-  async componentWillUnmount() {
-    clearInterval(this.interval!);
   }
 
   async getPointers() {
-    const res = await axios.get(process.env.REACT_APP_API_URI + '/pointers');
+    const { offset, pointers } = this.state;
+    const res = await axios.get(`${process.env.REACT_APP_API_URI}/pointers`, {
+      params: {
+        offset,
+      },
+    });
+    if (res.data.data.length === 0) {
+      this.setState({
+        offset: offset - 10,
+      });
+      return;
+    }
+    const mergedPointers = [...pointers, ...res.data.data];
     this.setState({
-      pointers: res.data.data,
+      pointers: mergedPointers,
     });
   }
 
@@ -49,18 +58,42 @@ class Root extends Component<Props, State> {
           path={routes.home}
           render={() => (
             <div className="container react-root">
-              <h1 className="title">Karai Pointers</h1>
+              <nav className="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                  <li className="is-active">
+                    <a href="/">Karai Explorer</a>
+                  </li>
+                </ul>
+              </nav>
               {pointers.map((pointer: any) => (
                 <Link
                   to={`/pointer/${pointer.hex}`}
                   key={pointer.hex}
-                  className="highlight-wrapper atom-one-light"
+                  className="highlight-wrapper github"
                 >
                   <Highlight language="english">
                     {JSON.stringify(pointer, null, 2)}
                   </Highlight>
                 </Link>
               ))}
+              {pointers.length > 0 && (
+                <div
+                  className="button"
+                  onClick={() => {
+                    const { offset } = this.state;
+                    this.setState(
+                      {
+                        offset: offset + 10,
+                      },
+                      () => {
+                        this.getPointers();
+                      }
+                    );
+                  }}
+                >
+                  Load More
+                </div>
+              )}
             </div>
           )}
         />
