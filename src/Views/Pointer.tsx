@@ -5,6 +5,7 @@ import { Searchbar } from '../Components/Searchbar';
 
 type State = {
   pointer: any;
+  searching: boolean;
 };
 
 type Props = {
@@ -17,21 +18,32 @@ class Pointer extends Component<Props, State> {
     super(props);
     this.state = {
       pointer: [],
+      searching: false,
     };
   }
 
   async componentDidMount() {
+    this.setState({
+      searching: true,
+    });
     const { match } = this.props;
     const res = await axios.get(
       `${process.env.REACT_APP_API_URI}/pointer/${match.params.hex}`
     );
-    this.setState({
-      pointer: res.data.data,
-    });
+    this.setState(
+      {
+        pointer: res.data.data,
+      },
+      () => {
+        this.setState({
+          searching: false,
+        });
+      }
+    );
   }
 
   render() {
-    const { pointer } = this.state;
+    const { pointer, searching } = this.state;
     const { match } = this.props;
     return (
       <div className="container react-root">
@@ -49,11 +61,16 @@ class Pointer extends Component<Props, State> {
         </header>
         <main>
           <Searchbar query="" />
-          <div className="highlight-wrapper github pointer-details">
-            <Highlight language="english">
-              {JSON.stringify(pointer[0], null, 2)}
-            </Highlight>
-          </div>
+          {pointer.length > 0 && (
+            <div className="highlight-wrapper github pointer-details">
+              <Highlight language="english">
+                {JSON.stringify(pointer[0], null, 2)}
+              </Highlight>
+            </div>
+          )}
+          {pointer.length === 0 && !searching && (
+            <h2 className="subtitle">Nothing found here!</h2>
+          )}
         </main>
       </div>
     );

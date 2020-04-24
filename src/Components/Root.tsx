@@ -99,7 +99,7 @@ class Root extends Component<Props, State> {
                       </thead>
                       <tbody>
                         {pointers.map((pointer: any) => (
-                          <tr>
+                          <tr key={pointer.hex}>
                             <td>
                               <Link
                                 to={`/pointer/${pointer.hex}`}
@@ -111,9 +111,15 @@ class Root extends Component<Props, State> {
                             </td>
                             <td className="ascii-column">{pointer.ascii}</td>
                             <td className="hex-column">
-                              <span className="translucent pointer-text-piece">{pointer.hex.substring(0, 8)}</span>
-                              <span className="pointer-text-piece">{pointer.hex.substring(8, 20)}</span>
-                              <span className="translucent pointer-text-piece">{pointer.hex.substring(20, 22)}</span>
+                              <span className="translucent pointer-text-piece">
+                                {pointer.hex.substring(0, 8)}
+                              </span>
+                              <span className="pointer-text-piece">
+                                {pointer.hex.substring(8, 20)}
+                              </span>
+                              <span className="translucent pointer-text-piece">
+                                {pointer.hex.substring(20, 22)}
+                              </span>
                             </td>
                             <td className="timestamp-column">
                               {new Date(pointer.timestamp).toLocaleString()}
