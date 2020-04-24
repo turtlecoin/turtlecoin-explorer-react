@@ -20,6 +20,7 @@ type Props = {};
 class Root extends Component<Props, State> {
   state: State;
   interval: NodeJS.Timeout | null;
+  expandRefs: any[];
   loadMoreRef: any;
   constructor(props: Props) {
     super(props);
@@ -29,6 +30,7 @@ class Root extends Component<Props, State> {
     };
     this.getPointers = this.getPointers.bind(this);
     this.interval = null;
+    this.expandRefs = [];
   }
 
   async componentDidMount() {
@@ -90,9 +92,9 @@ class Root extends Component<Props, State> {
                       <thead>
                         <tr>
                           <th />
-                          <th>ASCII</th>
-                          <th>Hex</th>
-                          <th>Timestamp</th>
+                          <th className="ascii-column">ASCII</th>
+                          <th className="hex-column">Hex</th>
+                          <th className="timestamp-column">Timestamp</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -107,13 +109,13 @@ class Root extends Component<Props, State> {
                                 <FontAwesomeIcon icon={faExpand} />
                               </Link>
                             </td>
-                            <td>{pointer.ascii}</td>
-                            <td>
+                            <td className="ascii-column">{pointer.ascii}</td>
+                            <td className="hex-column">
                               <span className="translucent pointer-text-piece">{pointer.hex.substring(0, 8)}</span>
                               <span className="pointer-text-piece">{pointer.hex.substring(8, 20)}</span>
                               <span className="translucent pointer-text-piece">{pointer.hex.substring(20, 22)}</span>
                             </td>
-                            <td>
+                            <td className="timestamp-column">
                               {new Date(pointer.timestamp).toLocaleString()}
                             </td>
                           </tr>
