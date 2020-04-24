@@ -123,6 +123,7 @@ class Root extends Component<Props, State> {
                       </tbody>
                     </table>
                   </div>
+                  <br />
                   {pointers.length > 0 && (
                     <div
                       className="button"

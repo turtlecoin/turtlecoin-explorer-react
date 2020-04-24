@@ -81,6 +81,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "postbuild": "rm -rf live && mv build live",
+    "deploy": "yarn build; kx_update",
     "test": "node scripts/test.js",
     "prettier": "node ./node_modules/prettier/bin-prettier.js '**/*.{ts,tsx,json,md}' --ignore-path .gitignore --single-quote --write"
   },

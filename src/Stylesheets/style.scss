@@ -7,15 +7,6 @@ $break-desktop: 1216px;
 $break-widescreen: 1216px;
 $break-fullhd: 1408px;
 
-.unselectable {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
 .hex-column {
     @media screen and (max-width: $break-tablet) {
         display: none;
