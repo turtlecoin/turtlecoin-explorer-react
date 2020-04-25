@@ -1,8 +1,6 @@
 $green: #a6e22e;
-$primary: #bf79db;
-$link: #008080;
 $white-text: #ddd;
-$dark-bg: #272822;
+$grey-text: #75715e;
 $dark: #272822;
 
 @import '../../node_modules/bulma/bulma.sass';
@@ -15,14 +13,14 @@ $break-fullhd: 1408px;
 
 html {
   @media screen and (prefers-color-scheme: dark) {
-    background-color: $black;
+    background-color: $dark;
   }
 }
 
 input {
   @media screen and (prefers-color-scheme: dark) {
-    background-color: $black !important;
-    border-color: $grey-dark !important;
+    background-color: darken($dark, 6%) !important;
+    border-color: Transparent !important;
     color: $white !important;
   }
 }
@@ -41,7 +39,7 @@ nav.breadcrumb ul li > a {
 
 nav.breadcrumb ul li > a:hover {
   @media screen and (prefers-color-scheme: dark) {
-    color: $primary;
+    color: $grey-text;
   }
 }
 
@@ -53,7 +51,7 @@ nav.breadcrumb ul li.is-active > a {
 
 a:hover {
   @media screen and (prefers-color-scheme: dark) {
-    color: $primary;
+    color: $grey-text;
   }
 }
 
@@ -65,15 +63,14 @@ a:hover {
 
 .table {
   @media screen and (prefers-color-scheme: dark) {
-    background-color: $dark-bg;
+    background-color: $dark;
   }
 }
 
 .table th {
   @media screen and (prefers-color-scheme: dark) {
-    background-color: $black;
-    border: 1px solid $grey-dark;
-    color: $grey-dark !important;
+    border: 1px solid $grey-text;
+    color: $white-text !important;
   }
 }
 
@@ -85,13 +82,19 @@ a:hover {
 
 .table.is-striped tbody tr:not(.is-selected):nth-child(2n) {
   @media screen and (prefers-color-scheme: dark) {
-    background-color: darken($dark-bg, 5%);
+    background-color: darken($dark, 5%);
+  }
+}
+
+.table tr {
+  @media screen and (prefers-color-scheme: dark) {
+    color: $white-text !important;
   }
 }
 
 .table tr:hover {
   @media screen and (prefers-color-scheme: dark) {
-    background-color: darken($dark-bg, 6%) !important;
+    background-color: darken($dark, 6%) !important;
   }
 }
 

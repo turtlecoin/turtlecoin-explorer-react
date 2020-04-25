@@ -81,7 +81,7 @@ class Root extends Component<Props, State> {
           <br />
           {pointers.length > 0 && (
             <div
-              className={`button ${darkMode ? 'is-dark' : ''}`}
+              className={`button ${darkMode ? 'is-black' : ''}`}
               ref={(ref) => (this.loadMoreRef = ref)}
               data-tip="No pointers found"
               data-type="error"

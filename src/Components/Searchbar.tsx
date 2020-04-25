@@ -46,6 +46,13 @@ export class Searchbar extends Component<Props, State> {
               }
             }}
             onChange={(event: any) => {
+              const { error } = this.state;
+              if (error && event.target.value.length > 0) {
+                this.setState({
+                  error: false,
+                })
+              }
+              console.log(event.target.value);
               this.setState({
                 query: event.target.value,
               });
@@ -55,7 +62,7 @@ export class Searchbar extends Component<Props, State> {
         <div className="control">
           <Link
             ref={(ref) => (this.submitRef = ref)}
-            className={`button ${darkMode ? 'is-dark' : 'is-link'}`}
+            className={`button ${darkMode ? 'is-black' : 'is-link'}`}
             to={`/search/${encodeURIComponent(query)}`}
             onClick={(event: any) => {
               const { query } = this.state;
