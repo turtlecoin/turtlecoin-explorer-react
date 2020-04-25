@@ -6,6 +6,7 @@ import axios from 'axios';
 type State = {
   results: any[];
   searching: boolean;
+  history: string[];
 };
 
 type Props = {
@@ -13,12 +14,48 @@ type Props = {
 };
 
 export class Search extends Component<Props, State> {
-  state: State = {
-    results: [],
-    searching: false,
-  };
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      results: [],
+      searching: false,
+      history: [],
+    };
+  }
 
   async componentDidMount() {
+    await this.getResults();
+    const { history } = this.state;
+    this.addToHistory(this.props.match.params.query);
+    this.setState({ history });
+  }
+
+  async componentDidUpdate() {
+    const { match } = this.props;
+    const { history } = this.state;
+
+    if (match.params.query !== history[0]) {
+      this.addToHistory(match.params.query);
+      await this.getResults();
+    }
+
+    console.log(match.params.query);
+    console.log(history);
+  }
+
+  addToHistory(query: string) {
+    const { history } = this.state;
+    history.unshift(this.props.match.params.query);
+    if (history.length > 10) {
+      history.pop();
+    }
+
+    this.setState({
+      history
+    })
+  }
+
+  async getResults() {
     this.setState({
       searching: true,
     });
