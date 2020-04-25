@@ -4,6 +4,7 @@ import ReactTooltip from 'react-tooltip';
 import { sleep } from '../Utils/sleep';
 import { Searchbar } from '../Components/Searchbar';
 import { TransactionTable } from '../Components/TransactionTable';
+import { darkMode } from '../App';
 
 type State = {
   pointers: any[];
@@ -80,7 +81,7 @@ class Root extends Component<Props, State> {
           <br />
           {pointers.length > 0 && (
             <div
-              className="button"
+              className={`button ${darkMode ? 'is-dark' : ''}`}
               ref={(ref) => (this.loadMoreRef = ref)}
               data-tip="No pointers found"
               data-type="error"

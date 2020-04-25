@@ -2,9 +2,10 @@ import React from 'react';
 import Root from './Components/Root';
 import './Stylesheets/style.scss';
 import './Stylesheets/github.scss';
+import './Stylesheets/monokai.scss';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-let darkMode = false;
+export let darkMode = false;
 
 if (window.matchMedia('(prefers-color-scheme)').media !== 'not all') {
   console.log('🎉 prefers-color-scheme is supported');

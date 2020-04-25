@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { darkMode } from '../App';
 
 type Props = {
   query: string;
@@ -54,7 +55,7 @@ export class Searchbar extends Component<Props, State> {
         <div className="control">
           <Link
             ref={(ref) => (this.submitRef = ref)}
-            className="button is-info"
+            className={`button ${darkMode ? 'is-success' : 'is-info'}`}
             to={`/search/${encodeURIComponent(query)}`}
             onClick={(event: any) => {
               const { query } = this.state;

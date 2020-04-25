@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Highlight from 'react-highlight.js';
 import { Searchbar } from '../Components/Searchbar';
+import { darkMode } from '../App';
 
 type State = {
   pointer: any;
@@ -62,7 +63,11 @@ class Pointer extends Component<Props, State> {
         <main>
           <Searchbar query="" />
           {pointer.length > 0 && (
-            <div className="highlight-wrapper github pointer-details">
+            <div
+              className={`${
+                darkMode ? 'monokai' : 'github'
+              } highlight-wrapper pointer-details`}
+            >
               <Highlight language="english">
                 {JSON.stringify(pointer[0], null, 2)}
               </Highlight>

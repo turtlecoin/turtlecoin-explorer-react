@@ -1,5 +1,9 @@
-@import '../../node_modules/bulma/bulma.sass';
+$green: #a6e22e;
+$white-text: #ddd;
+$dark-bg: #272822;
+$dark: #272822;
 
+@import '../../node_modules/bulma/bulma.sass';
 
 $break-mobile: 768px;
 $break-tablet: 1024px;
@@ -7,49 +11,131 @@ $break-desktop: 1216px;
 $break-widescreen: 1216px;
 $break-fullhd: 1408px;
 
+html {
+  @media screen and (prefers-color-scheme: dark) {
+    background-color: $black;
+  }
+}
+
+input {
+  @media screen and (prefers-color-scheme: dark) {
+    background-color: $black !important;
+    border-color: $grey-dark !important;
+    color: $white !important;
+  }
+}
+
+a {
+  @media screen and (prefers-color-scheme: dark) {
+    color: $green;
+  }
+}
+
+nav.breadcrumb ul li > a {
+  @media screen and (prefers-color-scheme: dark) {
+    color: $green;
+  }
+}
+
+nav.breadcrumb ul li > a:hover {
+  @media screen and (prefers-color-scheme: dark) {
+    color: $white-text;
+  }
+}
+
+nav.breadcrumb ul li.is-active > a {
+  @media screen and (prefers-color-scheme: dark) {
+    color: $white-text;
+  }
+}
+
+a:hover {
+  @media screen and (prefers-color-scheme: dark) {
+    color: $white-text;
+  }
+}
+
+::placeholder {
+  @media screen and (prefers-color-scheme: dark) {
+    color: $white-text !important;
+  }
+}
+
+.table {
+  @media screen and (prefers-color-scheme: dark) {
+    background-color: $dark-bg;
+  }
+}
+
+.table th {
+  @media screen and (prefers-color-scheme: dark) {
+    background-color: $black;
+    border: 1px solid $grey-dark;
+    color: $grey-dark !important;
+  }
+}
+
+.table td {
+  @media screen and (prefers-color-scheme: dark) {
+    color: $white-text;
+  }
+}
+
+.table.is-striped tbody tr:not(.is-selected):nth-child(2n) {
+  @media screen and (prefers-color-scheme: dark) {
+    background-color: darken($dark-bg, 5%);
+  }
+}
+
+.table tr:hover {
+  @media screen and (prefers-color-scheme: dark) {
+    background-color: darken($dark-bg, 6%) !important;
+  }
+}
+
 .hex-column {
-    @media screen and (max-width: $break-tablet) {
-        display: none;
-      }
+  @media screen and (max-width: $break-tablet) {
+    display: none;
+  }
 }
 
 .timestamp-column {
-    @media screen and (max-width: $break-mobile) {
-        display: none;
-      }
+  @media screen and (max-width: $break-mobile) {
+    display: none;
+  }
 }
 
 .translucent {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .react-root {
-    padding-top: 20px;
+  padding-top: 20px;
 }
 
 .pointer-text-piece {
-    padding-left: 0.5ch;
-    padding-right: 0.5ch;
+  padding-left: 0.5ch;
+  padding-right: 0.5ch;
 }
 
 .highlight-wrapper > pre {
-    background-color: transparent;
-    padding: 0;
-    padding-bottom: 20px;
+  background-color: transparent;
+  padding: 0;
+  padding-bottom: 20px;
 }
 
 .breadcrumb {
-    padding-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 .is-fullwidth {
-    width: 100% !important;
+  width: 100% !important;
 }
 
 .pointer-details {
-    padding-top: 15px;
+  padding-top: 15px;
 }
 
 .table-wrapper {
-    max-width: 100vw;
+  max-width: 100vw;
 }
