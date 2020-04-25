@@ -11,7 +11,9 @@ type State = {
   offset: number;
 };
 
-type Props = {};
+type Props = {
+  className: string;
+};
 
 class Root extends Component<Props, State> {
   state: State;
@@ -24,8 +26,9 @@ class Root extends Component<Props, State> {
   }
 
   render() {
+    const { className } = this.props;
     return (
-      <div>
+      <div className={className}>
         <ReactTooltip />
         <Switch>
           <Route
