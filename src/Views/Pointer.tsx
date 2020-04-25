@@ -3,6 +3,7 @@ import axios from 'axios';
 import Highlight from 'react-highlight.js';
 import { Searchbar } from '../Components/Searchbar';
 import { darkMode } from '../App';
+import { Link } from 'react-router-dom';
 
 type State = {
   pointer: any;
@@ -52,10 +53,10 @@ class Pointer extends Component<Props, State> {
           <nav className="breadcrumb" aria-label="breadcrumbs">
             <ul>
               <li>
-                <a href="/">Karai Explorer</a>
+                <Link to="/">Karai Explorer</Link>
               </li>
               <li className="is-active">
-                <a href=".">{match.params.hex}</a>
+                <Link to=".">{match.params.hex}</Link>
               </li>
             </ul>
           </nav>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Searchbar } from '../Components/Searchbar';
 import axios from 'axios';
 import { TransactionTable } from '../Components/TransactionTable';
+import { Link } from 'react-router-dom';
 
 type State = {
   results: any[];
@@ -79,7 +80,7 @@ export class Search extends Component<Props, State> {
   }
 
   render() {
-    const { results } = this.state;
+    const { results, searching } = this.state;
     const { match } = this.props;
 
     return (
@@ -88,18 +89,18 @@ export class Search extends Component<Props, State> {
           <nav className="breadcrumb" aria-label="breadcrumbs">
             <ul>
               <li>
-                <a href="/">Karai Explorer</a>
+                <Link to="/">Karai Explorer</Link>
               </li>
               <li
                 className={match.params.query === undefined ? 'is-active' : ''}
               >
-                <a href={`/search`}>Search</a>
+                <Link to={`/search`}>Search</Link>
               </li>
               {match.params.query !== undefined && (
                 <li className="is-active">
-                  <a href={`/search/${match.params.query}`}>
+                  <Link to={`/search/${match.params.query}`}>
                     {decodeURIComponent(match.params.query)}
-                  </a>
+                  </Link>
                 </li>
               )}
             </ul>
@@ -107,7 +108,7 @@ export class Search extends Component<Props, State> {
         </header>
         <main>
           <Searchbar query={match.params.query} />
-          {TransactionTable(results)}
+          {!searching && TransactionTable(results, match)}
         </main>
       </div>
     );

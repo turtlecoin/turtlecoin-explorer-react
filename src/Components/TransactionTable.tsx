@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExpand } from '@fortawesome/free-solid-svg-icons';
 
-export const TransactionTable = (pointers: any[]) => {
-  if (pointers.length === 0 || !pointers) {
+export const TransactionTable = (pointers: any[], match: any) => {
+  if ((pointers.length === 0 || !pointers) && match.path !== '/') {
     return <p className="subtitle">No results found!</p>;
   }
   return (

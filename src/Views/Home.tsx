@@ -5,10 +5,12 @@ import { sleep } from '../Utils/sleep';
 import { Searchbar } from '../Components/Searchbar';
 import { TransactionTable } from '../Components/TransactionTable';
 import { darkMode } from '../App';
+import { Link } from 'react-router-dom';
 
 type State = {
   pointers: any[];
   offset: number;
+  loading: boolean;
 };
 
 type Props = {
@@ -25,6 +27,7 @@ class Root extends Component<Props, State> {
     this.state = {
       pointers: [],
       offset: 0,
+      loading: false,
     };
     this.getPointers = this.getPointers.bind(this);
     this.interval = null;
@@ -63,6 +66,7 @@ class Root extends Component<Props, State> {
 
   render() {
     const { pointers } = this.state;
+    const { match } = this.props;
 
     return (
       <div className="container react-root">
@@ -70,14 +74,14 @@ class Root extends Component<Props, State> {
           <nav className="breadcrumb" aria-label="breadcrumbs">
             <ul>
               <li className="is-active">
-                <a href="/">Karai Explorer</a>
+                <Link to="/">Karai Explorer</Link>
               </li>
             </ul>
           </nav>
         </header>
         <main>
           <Searchbar query="" />
-          {TransactionTable(pointers)}
+          {TransactionTable(pointers, match)}
           <br />
           {pointers.length > 0 && (
             <div

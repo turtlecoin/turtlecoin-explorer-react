@@ -52,7 +52,6 @@ export class Searchbar extends Component<Props, State> {
                   error: false,
                 })
               }
-              console.log(event.target.value);
               this.setState({
                 query: event.target.value,
               });
