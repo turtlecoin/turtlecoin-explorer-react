@@ -26,7 +26,7 @@ class Root extends Component<Props, State> {
   render() {
     return (
       <div>
-        <ReactTooltip className="opaque" />
+        <ReactTooltip />
         <Switch>
           <Route
             exact

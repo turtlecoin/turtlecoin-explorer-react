@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Highlight from 'react-highlight.js';
 import { Searchbar } from '../Components/Searchbar';
 import axios from 'axios';
+import { TransactionTable } from '../Components/TransactionTable';
 
 type State = {
   results: any[];
@@ -24,35 +24,36 @@ export class Search extends Component<Props, State> {
   }
 
   async componentDidMount() {
+    const { match } = this.props;
     await this.getResults();
-    const { history } = this.state;
-    this.addToHistory(this.props.match.params.query);
-    this.setState({ history });
+
+    this.addToHistory(match.params.query);
+    if (match.query) {
+      const { history } = this.state;
+      this.setState({ history });
+    }
   }
 
   async componentDidUpdate() {
     const { match } = this.props;
     const { history } = this.state;
 
-    if (match.params.query !== history[0]) {
+    if (match.params.query && match.params.query !== history[0]) {
       this.addToHistory(match.params.query);
       await this.getResults();
     }
-
-    console.log(match.params.query);
-    console.log(history);
   }
 
   addToHistory(query: string) {
     const { history } = this.state;
-    history.unshift(this.props.match.params.query);
+    history.unshift(query);
     if (history.length > 10) {
       history.pop();
     }
 
     this.setState({
-      history
-    })
+      history,
+    });
   }
 
   async getResults() {
@@ -65,7 +66,6 @@ export class Search extends Component<Props, State> {
         query: match.params.query,
       },
     });
-    console.log(res);
     this.setState(
       {
         results: res.data.data,
@@ -79,8 +79,9 @@ export class Search extends Component<Props, State> {
   }
 
   render() {
-    const { results, searching } = this.state;
+    const { results } = this.state;
     const { match } = this.props;
+
     return (
       <div className="container react-root">
         <header>
@@ -89,29 +90,24 @@ export class Search extends Component<Props, State> {
               <li>
                 <a href="/">Karai Explorer</a>
               </li>
-              <li className="is-active">
-                <a href=".">Search</a>
+              <li
+                className={match.params.query === undefined ? 'is-active' : ''}
+              >
+                <a href={`/search`}>Search</a>
               </li>
+              {match.params.query !== undefined && (
+                <li className="is-active">
+                  <a href={`/search/${match.params.query}`}>
+                    {decodeURIComponent(match.params.query)}
+                  </a>
+                </li>
+              )}
             </ul>
           </nav>
         </header>
         <main>
           <Searchbar query={match.params.query} />
-          <p>
-            Search results for{' '}
-            <strong>{decodeURIComponent(match.params.query)}</strong>
-          </p>
-          <div className="highlight-wrapper github pointer-details">
-            {results.length > 0 && (
-              <Highlight language="english">
-                {JSON.stringify(results, null, 2)}
-              </Highlight>
-            )}
-
-            {results.length === 0 && !searching && (
-              <h2 className="subtitle">No results found! </h2>
-            )}
-          </div>
+          {TransactionTable(results)}
         </main>
       </div>
     );
