@@ -5,7 +5,7 @@ import { faExpand } from '@fortawesome/free-solid-svg-icons';
 
 export const TransactionTable = (pointers: any[]) => {
   if (pointers.length === 0 || !pointers) {
-    return null;
+    return <p className="subtitle">No results found!</p>;
   }
   return (
     <div className="table-wrapper">

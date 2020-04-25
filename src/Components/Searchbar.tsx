@@ -55,7 +55,7 @@ export class Searchbar extends Component<Props, State> {
         <div className="control">
           <Link
             ref={(ref) => (this.submitRef = ref)}
-            className={`button ${darkMode ? 'is-success' : 'is-info'}`}
+            className={`button ${darkMode ? 'is-primary' : 'is-info'}`}
             to={`/search/${encodeURIComponent(query)}`}
             onClick={(event: any) => {
               const { query } = this.state;

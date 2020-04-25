@@ -1,4 +1,5 @@
 $green: #a6e22e;
+$primary: #bf79db;
 $white-text: #ddd;
 $dark-bg: #272822;
 $dark: #272822;
@@ -39,7 +40,7 @@ nav.breadcrumb ul li > a {
 
 nav.breadcrumb ul li > a:hover {
   @media screen and (prefers-color-scheme: dark) {
-    color: $white-text;
+    color: $primary;
   }
 }
 
@@ -51,7 +52,7 @@ nav.breadcrumb ul li.is-active > a {
 
 a:hover {
   @media screen and (prefers-color-scheme: dark) {
-    color: $white-text;
+    color: $primary;
   }
 }
 
