@@ -30,7 +30,15 @@ export const TransactionTable = (pointers: any[], match: any) => {
                   <FontAwesomeIcon icon={faExpand} />
                 </Link>
               </td>
-              <td className="ascii-column">{pointer.ascii}</td>
+              <td className="ascii-column">
+                <a
+                  href={pointer.ascii}
+                  target="__blank"
+                  rel="noopener noreferrer"
+                >
+                  {pointer.ascii}
+                </a>
+              </td>
               <td className="hex-column">
                 <span className="translucent pointer-text-piece">
                   {pointer.hex.substring(0, 8)}

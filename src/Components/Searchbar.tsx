@@ -50,7 +50,7 @@ export class Searchbar extends Component<Props, State> {
               if (error && event.target.value.length > 0) {
                 this.setState({
                   error: false,
-                })
+                });
               }
               this.setState({
                 query: event.target.value,
