@@ -6,9 +6,12 @@ import { Searchbar } from '../Components/Searchbar';
 import { darkMode } from '../App';
 import { Breadcrumbs } from '../Components/Breadcrumbs';
 import { BlockTable } from '../Components/BlockTable';
+import { client } from '..';
+
 
 type State = {
   blocks: any[];
+  displayedBlockCount: number;
   blockTransactions: any[];
   offset: number;
   loading: boolean;
@@ -27,6 +30,7 @@ class Blocks extends Component<Props, State> {
     this.state = {
       blocks: [],
       blockTransactions: [],
+      displayedBlockCount: 0,
       offset: 0,
       loading: false,
     };
@@ -36,6 +40,28 @@ class Blocks extends Component<Props, State> {
 
   async componentDidMount() {
     await this.getBlocks();
+
+    client.onmessage = message => {
+      const msg =  JSON.parse(message.data as string);
+
+      if (msg.type === 'block') {
+        console.log(msg.message);
+        const { blocks, displayedBlockCount } = this.state;
+        blocks.unshift(msg.message);
+
+        while (blocks.length > displayedBlockCount) {
+          blocks.pop();
+        }
+
+        this.setState({
+          blocks
+        })
+      }
+    };
+  }
+
+  async componentWillUnmount() {
+    client.onmessage = () => {};
   }
 
   async getBlocks() {
@@ -55,6 +81,7 @@ class Blocks extends Component<Props, State> {
     const mergedBlocks = [...blocks, ...res.data.data];
     this.setState({
       blocks: mergedBlocks,
+      displayedBlockCount: mergedBlocks.length
     });
   }
 
