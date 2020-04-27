@@ -125,6 +125,25 @@ a:hover {
   }
 }
 
+.navbar-menu {
+  @media screen and (prefers-color-scheme: dark) {
+    background-color: $black;
+  }
+}
+
+.navbar-item {
+  @media screen and (prefers-color-scheme: dark) {
+    color: $white-text;
+  }
+}
+
+.navbar-item:hover {
+  @media screen and (prefers-color-scheme: dark) {
+    background-color: darken($black, 3%) !important;
+    color: #fff !important;
+  }
+}
+
 .pointer-hex-column {
   @media screen and (max-width: $break-tablet) {
     display: none;

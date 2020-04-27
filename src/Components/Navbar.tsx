@@ -3,16 +3,21 @@ import { Link } from 'react-router-dom';
 import { darkMode } from '../App';
 
 type Props = {};
-type State = {};
+type State = {
+  expanded: boolean;
+};
 
 class Navbar extends Component<Props, State> {
   state: State;
   constructor(props: Props) {
     super(props);
-    this.state = {};
+    this.state = {
+      expanded: false,
+    };
   }
 
   render() {
+    const { expanded } = this.state;
     return (
       <header>
         <nav
@@ -28,9 +33,17 @@ class Navbar extends Component<Props, State> {
 
               <span
                 role="button"
-                className="navbar-burger burger"
+                className={`navbar-burger burger ${
+                  expanded ? 'is-active' : ''
+                }`}
                 aria-label="menu"
                 aria-expanded="false"
+                onClick={() => {
+                  const { expanded } = this.state;
+                  this.setState({
+                    expanded: !expanded,
+                  });
+                }}
               >
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
@@ -39,18 +52,39 @@ class Navbar extends Component<Props, State> {
               </span>
             </div>
 
-            <div className="navbar-menu">
+            <div className={`navbar-menu ${expanded ? 'is-active' : ''}`}>
               <div className="navbar-start">
-                <Link className="navbar-item" to={'/'}>
-                  Home
-                </Link>
-                <Link className="navbar-item" to={'/pointers'}>
+                <Link
+                  className="navbar-item"
+                  to={'/pointers'}
+                  onClick={() => {
+                    this.setState({
+                      expanded: false,
+                    });
+                  }}
+                >
                   Pointers
                 </Link>
-                <Link className="navbar-item" to={'/blocks'}>
+                <Link
+                  className="navbar-item"
+                  to={'/blocks'}
+                  onClick={() => {
+                    this.setState({
+                      expanded: false,
+                    });
+                  }}
+                >
                   Blocks
                 </Link>
-                <Link className="navbar-item" to={'/transactions'}>
+                <Link
+                  className="navbar-item"
+                  to={'/transactions'}
+                  onClick={() => {
+                    this.setState({
+                      expanded: false,
+                    });
+                  }}
+                >
                   Transactions
                 </Link>
               </div>
