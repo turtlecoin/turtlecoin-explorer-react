@@ -45,7 +45,6 @@ class Blocks extends Component<Props, State> {
       const msg =  JSON.parse(message.data as string);
 
       if (msg.type === 'block') {
-        console.log(msg.message);
         const { blocks, displayedBlockCount } = this.state;
         blocks.unshift(msg.message);
 
@@ -83,6 +82,18 @@ class Blocks extends Component<Props, State> {
       blocks: mergedBlocks,
       displayedBlockCount: mergedBlocks.length
     });
+  }
+
+  async loadMore() {
+    const { offset } = this.state;
+    this.setState(
+      {
+        offset: offset + 10,
+      },
+      () => {
+        this.getBlocks();
+      }
+    );
   }
 
   async showTip() {
