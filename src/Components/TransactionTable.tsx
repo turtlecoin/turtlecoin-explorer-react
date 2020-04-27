@@ -6,11 +6,8 @@ import { atomicToHuman } from '../Utils/atomicToHuman';
 import { formatLikeCurrency } from '../Utils/formatLikeCurrency';
 
 export const TransactionTable = (transactions: any[], match: any) => {
-  if (
-    (transactions.length === 0 || !transactions) &&
-    match.path.includes('/search')
-  ) {
-    return <p className="subtitle">No results found!</p>;
+  if (transactions.length === 0 || !transactions) {
+    return null;
   }
   return (
     <div className="table-wrapper">

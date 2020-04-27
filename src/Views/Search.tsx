@@ -3,10 +3,11 @@ import { Searchbar } from '../Components/Searchbar';
 import axios from 'axios';
 import { PointerTable } from '../Components/PointerTable';
 import { Breadcrumbs } from '../Components/Breadcrumbs';
+import { BlockTable } from '../Components/BlockTable';
+import { TransactionTable } from '../Components/TransactionTable';
 
 type State = {
   results: any[];
-  searching: boolean;
   history: string[];
 };
 
@@ -19,7 +20,6 @@ export class Search extends Component<Props, State> {
     super(props);
     this.state = {
       results: [],
-      searching: false,
       history: [],
     };
   }
@@ -58,37 +58,37 @@ export class Search extends Component<Props, State> {
   }
 
   async getResults() {
-    this.setState({
-      searching: true,
-    });
     const { match } = this.props;
     const res = await axios.get(`${process.env.REACT_APP_API_URI}/search`, {
       params: {
         query: match.params.query,
       },
     });
-    this.setState(
-      {
-        results: res.data.data,
-      },
-      () => {
-        this.setState({
-          searching: false,
-        });
-      }
-    );
+    this.setState({
+      results: res.data.data,
+    });
   }
 
   render() {
-    const { results, searching } = this.state;
+    const { results } = this.state;
     const { match } = this.props;
+
+    const [pointers, blocks, transactions] = results;
 
     return (
       <div className="container react-root">
         <Breadcrumbs match={match} />
         <main>
           <Searchbar query={match.params.query} />
-          {!searching && PointerTable(results, match)}
+          {pointers && PointerTable(pointers, match)}
+          {blocks && BlockTable(blocks, match)}
+          {transactions && TransactionTable(transactions, match)}
+          {pointers &&
+            pointers.length === 0 &&
+            blocks &&
+            blocks.length === 0 &&
+            transactions &&
+            transactions.length === 0 && <p>No results found!</p>}
         </main>
       </div>
     );

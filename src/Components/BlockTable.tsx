@@ -5,8 +5,8 @@ import { faExpand } from '@fortawesome/free-solid-svg-icons';
 import { formatLikeCurrency } from '../Utils/formatLikeCurrency';
 
 export const BlockTable = (blocks: any[], match: any) => {
-  if ((blocks.length === 0 || !blocks) && match.path.includes('/search')) {
-    return <p className="subtitle">No results found!</p>;
+  if (blocks.length === 0 || !blocks) {
+    return null;
   }
   return (
     <div className="table-wrapper">

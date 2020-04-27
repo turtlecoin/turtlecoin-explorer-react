@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExpand } from '@fortawesome/free-solid-svg-icons';
 
 export const PointerTable = (pointers: any[], match: any) => {
-  if ((pointers.length === 0 || !pointers) && match.path.includes('/search')) {
-    return <p className="subtitle">No results found!</p>;
+  if (pointers.length === 0 || !pointers) {
+    return null;
   }
   return (
     <div className="table-wrapper">
