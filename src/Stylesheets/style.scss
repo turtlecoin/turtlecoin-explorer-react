@@ -9,10 +9,9 @@ $navbar-height: 5rem;
 @import '../../node_modules/bulma/bulma.sass';
 
 $break-mobile: 768px;
-$break-tablet: 1024px;
+$break-tablet: 1023px;
 $break-desktop: 1216px;
-$break-widescreen: 1216px;
-$break-fullhd: 1408px;
+$break-widescreen: 1408px;
 
 html {
   @media screen and (prefers-color-scheme: dark) {
