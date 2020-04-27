@@ -13,9 +13,9 @@ export const PointerTable = (pointers: any[], match: any) => {
         <thead>
           <tr>
             <th />
-            <th className="ascii-column">ASCII</th>
-            <th className="hex-column">Hex</th>
-            <th className="timestamp-column">Timestamp</th>
+            <th className="pointer-ascii-column">ASCII</th>
+            <th className="pointer-hex-column">Hex</th>
+            <th className="pointer-timestamp-column">Timestamp</th>
           </tr>
         </thead>
         <tbody>
@@ -30,7 +30,7 @@ export const PointerTable = (pointers: any[], match: any) => {
                   <FontAwesomeIcon icon={faExpand} />
                 </Link>
               </td>
-              <td className="ascii-column">
+              <td className="pointer-ascii-column">
                 <a
                   href={pointer.ascii}
                   target="__blank"
@@ -39,7 +39,7 @@ export const PointerTable = (pointers: any[], match: any) => {
                   {pointer.ascii}
                 </a>
               </td>
-              <td className="hex-column">
+              <td className="pointer-hex-column">
                 <span className="translucent pointer-text-piece">
                   {pointer.hex.substring(0, 8)}
                 </span>
@@ -50,7 +50,7 @@ export const PointerTable = (pointers: any[], match: any) => {
                   {pointer.hex.substring(20, 22)}
                 </span>
               </td>
-              <td className="timestamp-column">
+              <td className="pointer-timestamp-column">
                 {new Date(pointer.timestamp).toLocaleString()}
               </td>
             </tr>

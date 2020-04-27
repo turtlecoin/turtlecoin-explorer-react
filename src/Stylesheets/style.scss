@@ -118,13 +118,20 @@ a:hover {
   }
 }
 
-.hex-column {
+.tx-hash-column,
+.block-hash-column {
+  @media screen and (max-width: $break-desktop) {
+    display: none;
+  }
+}
+
+.pointer-hex-column {
   @media screen and (max-width: $break-tablet) {
     display: none;
   }
 }
 
-.timestamp-column {
+.pointer-timestamp-column {
   @media screen and (max-width: $break-mobile) {
     display: none;
   }
