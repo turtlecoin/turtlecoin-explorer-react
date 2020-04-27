@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { darkMode } from '../App';
+import logo from '../Assets/turtlecoin_symbol.svg';
+import logoWhite from '../Assets/turtlecoin_symbol_white.svg';
 
 type Props = {};
 type State = {
@@ -28,7 +30,12 @@ class Navbar extends Component<Props, State> {
           <div className="container">
             <div className="navbar-brand">
               <Link className="navbar-item" to="/">
-                <h1 className="title">Explorer</h1>
+                <img
+                  src={darkMode ? logoWhite : logo}
+                  alt="TurtleCoin® logo"
+                  width={30}
+                  height={30}
+                />
               </Link>
 
               <span
