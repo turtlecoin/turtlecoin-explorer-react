@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExpand } from '@fortawesome/free-solid-svg-icons';
+import { atomicToHuman } from '../Utils/atomicToHuman';
+import { formatLikeCurrency } from '../Utils/formatLikeCurrency';
 
 export const TransactionTable = (transactions: any[], match: any) => {
   if (
@@ -35,9 +37,15 @@ export const TransactionTable = (transactions: any[], match: any) => {
                 </Link>
               </td>
               <td className="tx-hash-column">{tx.hash}</td>
-              <td className="tx-amount-column">{tx.amount}</td>
-              <td className="tx-fee-column">{tx.fee}</td>
-              <td className="tx-size-column">{tx.size}</td>
+              <td className="tx-amount-column">
+                {formatLikeCurrency(atomicToHuman(tx.amount))}
+              </td>
+              <td className="tx-fee-column">
+                {tx.fee < 0
+                  ? '0.00'
+                  : formatLikeCurrency(atomicToHuman(tx.fee))}
+              </td>
+              <td className="tx-size-column">{formatLikeCurrency(tx.size)}</td>
             </tr>
           ))}
         </tbody>

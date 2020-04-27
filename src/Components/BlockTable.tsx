@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExpand } from '@fortawesome/free-solid-svg-icons';
+import { formatLikeCurrency } from '../Utils/formatLikeCurrency';
 
 export const BlockTable = (blocks: any[], match: any) => {
   if ((blocks.length === 0 || !blocks) && match.path.includes('/search')) {
@@ -30,7 +31,9 @@ export const BlockTable = (blocks: any[], match: any) => {
                   <FontAwesomeIcon icon={faExpand} />
                 </Link>
               </td>
-              <td className="block-height-column">{block.height}</td>
+              <td className="block-height-column">
+                {formatLikeCurrency(block.height)}
+              </td>
               <td className="block-hash-column">{block.hash}</td>
               <td className="block-timestamp-column">
                 {new Date(block.timestamp).toLocaleString()}
