@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Searchbar } from '../Components/Searchbar';
 import axios from 'axios';
-import { TransactionTable } from '../Components/TransactionTable';
-import { Link } from 'react-router-dom';
+import { PointerTable } from '../Components/PointerTable';
+import { Breadcrumbs } from '../Components/Breadcrumbs';
 
 type State = {
   results: any[];
@@ -85,30 +85,10 @@ export class Search extends Component<Props, State> {
 
     return (
       <div className="container react-root">
-        <header>
-          <nav className="breadcrumb" aria-label="breadcrumbs">
-            <ul>
-              <li>
-                <Link to="/">Karai Explorer</Link>
-              </li>
-              <li
-                className={match.params.query === undefined ? 'is-active' : ''}
-              >
-                <Link to={`/search`}>Search</Link>
-              </li>
-              {match.params.query !== undefined && (
-                <li className="is-active">
-                  <Link to={`/search/${match.params.query}`}>
-                    {decodeURIComponent(match.params.query)}
-                  </Link>
-                </li>
-              )}
-            </ul>
-          </nav>
-        </header>
+        <Breadcrumbs match={match} />
         <main>
           <Searchbar query={match.params.query} />
-          {!searching && TransactionTable(results, match)}
+          {!searching && PointerTable(results, match)}
         </main>
       </div>
     );

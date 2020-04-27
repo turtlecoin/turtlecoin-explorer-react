@@ -4,6 +4,8 @@ $white-text: #ddd;
 $grey-text: #75715e;
 $dark: #272822;
 
+$navbar-height: 5rem;
+
 @import '../../node_modules/bulma/bulma.sass';
 
 $break-mobile: 768px;
@@ -26,9 +28,26 @@ input {
   }
 }
 
+p {
+  @media screen and (prefers-color-scheme: dark) {
+    color: $white-text;
+  }
+}
+
 a {
   @media screen and (prefers-color-scheme: dark) {
     color: $green;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @media screen and (prefers-color-scheme: dark) {
+    color: $white-text !important;
   }
 }
 

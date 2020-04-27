@@ -3,9 +3,9 @@ import axios from 'axios';
 import ReactTooltip from 'react-tooltip';
 import { sleep } from '../Utils/sleep';
 import { Searchbar } from '../Components/Searchbar';
-import { TransactionTable } from '../Components/TransactionTable';
+import { PointerTable } from '../Components/PointerTable';
 import { darkMode } from '../App';
-import { Link } from 'react-router-dom';
+import { Breadcrumbs } from '../Components/Breadcrumbs';
 
 type State = {
   pointers: any[];
@@ -17,9 +17,8 @@ type Props = {
   match: any;
 };
 
-class Root extends Component<Props, State> {
+class Pointers extends Component<Props, State> {
   state: State;
-  interval: NodeJS.Timeout | null;
   expandRefs: any[];
   loadMoreRef: any;
   constructor(props: Props) {
@@ -30,7 +29,6 @@ class Root extends Component<Props, State> {
       loading: false,
     };
     this.getPointers = this.getPointers.bind(this);
-    this.interval = null;
     this.expandRefs = [];
   }
 
@@ -70,18 +68,10 @@ class Root extends Component<Props, State> {
 
     return (
       <div className="container react-root">
-        <header>
-          <nav className="breadcrumb" aria-label="breadcrumbs">
-            <ul>
-              <li className="is-active">
-                <Link to="/">Karai Explorer</Link>
-              </li>
-            </ul>
-          </nav>
-        </header>
+        <Breadcrumbs match={match} />
         <main>
           <Searchbar query="" />
-          {TransactionTable(pointers, match)}
+          {PointerTable(pointers, match)}
           <br />
           {pointers.length > 0 && (
             <div
@@ -110,4 +100,4 @@ class Root extends Component<Props, State> {
   }
 }
 
-export default Root;
+export default Pointers;

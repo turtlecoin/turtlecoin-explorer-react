@@ -1,5 +1,10 @@
 export const routes = {
   home: '/',
-  pointer: '/pointer/:hex',
+  pointer: '/pointers/:hex',
+  pointers: '/pointers',
+  block: '/blocks/:hash',
+  blocks: '/blocks',
+  transaction: '/transactions/:hash',
+  transactions: '/transactions',
   search: '/search/:query?',
 };

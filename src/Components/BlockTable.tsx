@@ -3,11 +3,8 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExpand } from '@fortawesome/free-solid-svg-icons';
 
-export const TransactionTable = (transactions: any[], match: any) => {
-  if (
-    (transactions.length === 0 || !transactions) &&
-    match.path.includes('/search')
-  ) {
+export const BlockTable = (blocks: any[], match: any) => {
+  if ((blocks.length === 0 || !blocks) && match.path.includes('/search')) {
     return <p className="subtitle">No results found!</p>;
   }
   return (
@@ -16,28 +13,28 @@ export const TransactionTable = (transactions: any[], match: any) => {
         <thead>
           <tr>
             <th />
-            <th className="tx-hash-column">Hash</th>
-            <th className="tx-amount-column">Amount</th>
-            <th className="tx-fee-column">Fee</th>
-            <th className="tx-size-column">Size</th>
+            <th className="block-height-column">Height</th>
+            <th className="block-hash-column">Hash</th>
+            <th className="block-timestamp-column">Timestamp</th>
           </tr>
         </thead>
         <tbody>
-          {transactions.map((tx: any) => (
-            <tr key={tx.hash}>
+          {blocks.map((block: any) => (
+            <tr key={block.hash}>
               <td>
                 <Link
-                  to={`/transactions/${tx.hash}`}
+                  to={`/blocks/${block.hash}`}
                   aria-label="expand more details"
                 >
                   {' '}
                   <FontAwesomeIcon icon={faExpand} />
                 </Link>
               </td>
-              <td className="tx-hash-column">{tx.hash}</td>
-              <td className="tx-amount-column">{tx.amount}</td>
-              <td className="tx-fee-column">{tx.fee}</td>
-              <td className="tx-size-column">{tx.size}</td>
+              <td className="block-height-column">{block.height}</td>
+              <td className="block-hash-column">{block.hash}</td>
+              <td className="block-timestamp-column">
+                {new Date(block.timestamp).toLocaleString()}
+              </td>
             </tr>
           ))}
         </tbody>

@@ -1,9 +1,9 @@
 import React from 'react';
-import Root from './Components/Root';
+import Router from './Router';
 import './Stylesheets/style.scss';
 import './Stylesheets/github.scss';
 import './Stylesheets/monokai.scss';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 export let darkMode = false;
 
@@ -15,9 +15,9 @@ if (window.matchMedia('(prefers-color-scheme)').media !== 'not all') {
 
 function App() {
   return (
-    <Router>
-      <Root className={darkMode ? 'dark' : 'light'} />
-    </Router>
+    <BrowserRouter>
+      <Router className={darkMode ? 'dark' : 'light'} />
+    </BrowserRouter>
   );
 }
 
