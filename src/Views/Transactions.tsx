@@ -6,9 +6,11 @@ import { Searchbar } from '../Components/Searchbar';
 import { darkMode } from '../App';
 import { Breadcrumbs } from '../Components/Breadcrumbs';
 import { TransactionTable } from '../Components/TransactionTable';
+import { client } from '..';
 
 type State = {
   transactions: any[];
+  displayedTransactionCount: number;
   offset: number;
   loading: boolean;
 };
@@ -25,6 +27,7 @@ class Transactions extends Component<Props, State> {
     super(props);
     this.state = {
       transactions: [],
+      displayedTransactionCount: 0,
       offset: 0,
       loading: false,
     };
@@ -34,6 +37,28 @@ class Transactions extends Component<Props, State> {
 
   async componentDidMount() {
     await this.getTransactions();
+
+
+    client.onmessage = message => {
+      const msg =  JSON.parse(message.data as string);
+
+      if (msg.type === 'tx') {
+        const { transactions, displayedTransactionCount } = this.state;
+        transactions.unshift(msg.message);
+
+        while (transactions.length > displayedTransactionCount) {
+          transactions.pop();
+        }
+
+        this.setState({
+          transactions
+        })
+      }
+    };
+  }
+
+  async componentWillUnmount() {
+    client.onmessage = () => {};
   }
 
   async getTransactions() {
@@ -56,6 +81,7 @@ class Transactions extends Component<Props, State> {
     const mergedTransactions = [...transactions, ...res.data.data];
     this.setState({
       transactions: mergedTransactions,
+      displayedTransactionCount: mergedTransactions.length
     });
   }
 

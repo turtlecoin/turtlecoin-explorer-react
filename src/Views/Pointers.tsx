@@ -6,10 +6,12 @@ import { Searchbar } from '../Components/Searchbar';
 import { PointerTable } from '../Components/PointerTable';
 import { darkMode } from '../App';
 import { Breadcrumbs } from '../Components/Breadcrumbs';
+import { client } from '..';
 
 type State = {
   pointers: any[];
   offset: number;
+  displayedPointerCount: number;
   loading: boolean;
 };
 
@@ -25,6 +27,7 @@ class Pointers extends Component<Props, State> {
     super(props);
     this.state = {
       pointers: [],
+      displayedPointerCount: 0,
       offset: 0,
       loading: false,
     };
@@ -34,6 +37,27 @@ class Pointers extends Component<Props, State> {
 
   async componentDidMount() {
     await this.getPointers();
+
+    client.onmessage = message => {
+      const msg =  JSON.parse(message.data as string);
+
+      if (msg.type === 'pointer') {
+        const { pointers, displayedPointerCount } = this.state;
+        pointers.unshift(msg.message);
+
+        while (pointers.length > displayedPointerCount) {
+          pointers.pop();
+        }
+
+        this.setState({
+          pointers
+        })
+      }
+    };
+  }
+
+  async componentWillUnmount() {
+    client.onmessage = () => {};
   }
 
   async getPointers() {
@@ -53,6 +77,7 @@ class Pointers extends Component<Props, State> {
     const mergedPointers = [...pointers, ...res.data.data];
     this.setState({
       pointers: mergedPointers,
+      displayedPointerCount: mergedPointers.length,
     });
   }
 
