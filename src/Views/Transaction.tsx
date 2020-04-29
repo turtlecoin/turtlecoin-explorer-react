@@ -41,7 +41,6 @@ class Transaction extends Component<Props, State> {
     const res = await axios.get(
       `${process.env.REACT_APP_API_URI}/transactions/${match.params.hash}`
     );
-    console.log(res);
     this.setState({
       transaction: res.data.data,
     });

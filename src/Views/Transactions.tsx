@@ -7,6 +7,7 @@ import { darkMode } from '../App';
 import { Breadcrumbs } from '../Components/Breadcrumbs';
 import { TransactionTable } from '../Components/TransactionTable';
 import { client } from '..';
+import { offsetIncrement } from '../Constants/config';
 
 type State = {
   transactions: any[];
@@ -73,7 +74,7 @@ class Transactions extends Component<Props, State> {
     );
     if (res.data.data.length === 0) {
       this.setState({
-        offset: offset - 10,
+        offset: offset - offsetIncrement,
       });
       this.showTip();
       return;
@@ -112,7 +113,7 @@ class Transactions extends Component<Props, State> {
                 const { offset } = this.state;
                 this.setState(
                   {
-                    offset: offset + 10,
+                    offset: offset + offsetIncrement,
                   },
                   () => {
                     this.getTransactions();

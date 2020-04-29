@@ -7,6 +7,7 @@ import { PointerTable } from '../Components/PointerTable';
 import { darkMode } from '../App';
 import { Breadcrumbs } from '../Components/Breadcrumbs';
 import { client } from '..';
+import { offsetIncrement } from '../Constants/config';
 
 type State = {
   pointers: any[];
@@ -69,7 +70,7 @@ class Pointers extends Component<Props, State> {
     });
     if (res.data.data.length === 0) {
       this.setState({
-        offset: offset - 10,
+        offset: offset - offsetIncrement,
       });
       this.showTip();
       return;
@@ -108,7 +109,7 @@ class Pointers extends Component<Props, State> {
                 const { offset } = this.state;
                 this.setState(
                   {
-                    offset: offset + 10,
+                    offset: offset + offsetIncrement,
                   },
                   () => {
                     this.getPointers();

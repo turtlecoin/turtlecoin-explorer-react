@@ -15,7 +15,7 @@ $break-widescreen: 1408px;
 
 html {
   @media screen and (prefers-color-scheme: dark) {
-    background-color: $dark;
+    background-color: $black;
   }
 }
 
@@ -47,6 +47,12 @@ h5,
 h6 {
   @media screen and (prefers-color-scheme: dark) {
     color: $white-text !important;
+  }
+}
+
+.button.is-black {
+  @media screen and (prefers-color-scheme: dark) {
+    background-color: darken($black, 5%) !important;
   }
 }
 
@@ -82,7 +88,7 @@ a:hover {
 
 .table {
   @media screen and (prefers-color-scheme: dark) {
-    background-color: $dark;
+    background-color: Transparent;
   }
 }
 
@@ -101,7 +107,7 @@ a:hover {
 
 .table.is-striped tbody tr:not(.is-selected):nth-child(2n) {
   @media screen and (prefers-color-scheme: dark) {
-    background-color: darken($dark, 5%);
+    background-color: darken($black, 3%);
   }
 }
 
@@ -113,7 +119,7 @@ a:hover {
 
 .table tr:hover {
   @media screen and (prefers-color-scheme: dark) {
-    background-color: darken($dark, 6%) !important;
+    background-color: darken($black, 5%) !important;
   }
 }
 
