@@ -7,8 +7,6 @@ import { Breadcrumbs } from '../Components/Breadcrumbs';
 
 type State = {
   transaction: any;
-  inputs: any[];
-  outputs: any[];
 };
 
 type Props = {
@@ -21,8 +19,6 @@ class Transaction extends Component<Props, State> {
     super(props);
     this.state = {
       transaction: [],
-      inputs: [],
-      outputs: [],
     };
     this.getTransaction = this.getTransaction.bind(this);
   }
@@ -45,7 +41,7 @@ class Transaction extends Component<Props, State> {
   }
 
   render() {
-    const { transaction, inputs, outputs } = this.state;
+    const { transaction } = this.state;
     const { match } = this.props;
     return (
       <div className="container react-root">
