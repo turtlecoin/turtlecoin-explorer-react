@@ -4,6 +4,8 @@ $white-text: #ddd;
 $grey-text: #75715e;
 $dark: #272822;
 
+$gap: 5px;
+
 $navbar-height: 5rem;
 
 @import '../../node_modules/bulma/bulma.sass';
@@ -17,6 +19,11 @@ html {
   @media screen and (prefers-color-scheme: dark) {
     background-color: $black;
   }
+}
+
+body {
+  margin-left: 2ch;
+  margin-right: 2ch;
 }
 
 input {
