@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import Highlight from 'react-highlight.js';
 import { Searchbar } from '../Components/Searchbar';
