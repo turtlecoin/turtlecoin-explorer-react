@@ -29,7 +29,7 @@ export class Searchbar extends Component<Props, State> {
   render() {
     const { query, error } = this.state;
     return (
-      <div className="frame">
+      <div className="frame searchbar">
         <div className="field has-addons searchbar">
           <div className="control is-fullwidth">
             <input

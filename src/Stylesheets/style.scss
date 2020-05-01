@@ -21,6 +21,16 @@ html {
   }
 }
 
+.Site {
+  display: flex;
+  min-height: calc(100vh - 80px);
+  flex-direction: column;
+}
+
+.Site-content {
+  flex: 1;
+}
+
 input {
   @media screen and (prefers-color-scheme: dark) {
     background-color: darken($dark, 6%) !important;
@@ -151,6 +161,15 @@ a:hover {
   }
 }
 
+.footer {
+  margin-top: 20px;
+  background-color: pink !important;
+}
+
+.searchbar {
+  padding-bottom: 10px;
+}
+
 .pointer-hex-column {
   @media screen and (max-width: $break-tablet) {
     display: none;
@@ -209,5 +228,17 @@ a:hover {
 
   @media screen and (max-width: $break-mobile) {
     max-width: 92vw;
+  }
+}
+
+.brand-link {
+  @media screen and (prefers-color-scheme: dark) {
+    color: $grey-light !important;
+  }
+}
+
+.brand-link:hover {
+  @media screen and (prefers-color-scheme: dark) {
+    color: $white-text !important;
   }
 }

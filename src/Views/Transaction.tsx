@@ -4,6 +4,7 @@ import Highlight from 'react-highlight.js';
 import { Searchbar } from '../Components/Searchbar';
 import { darkMode } from '../App';
 import { Breadcrumbs } from '../Components/Breadcrumbs';
+import { Footer } from '../Components/Footer';
 
 type State = {
   transaction: any;
@@ -42,9 +43,9 @@ class Transaction extends Component<Props, State> {
     const { transaction } = this.state;
     const { match } = this.props;
     return (
-      <div className="container react-root">
+      <div className="container react-root Site">
         <Breadcrumbs match={match} />
-        <main>
+        <main className="Site-content">
           <Searchbar query="" />
           {transaction.length > 0 && (
             <div
@@ -58,6 +59,7 @@ class Transaction extends Component<Props, State> {
             </div>
           )}
         </main>
+        <Footer />
       </div>
     );
   }

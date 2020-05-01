@@ -8,6 +8,7 @@ import { Breadcrumbs } from '../Components/Breadcrumbs';
 import { BlockTable } from '../Components/BlockTable';
 import { client } from '..';
 import { offsetIncrement } from '../Constants/config';
+import { Footer } from '../Components/Footer';
 
 type State = {
   blocks: any[];
@@ -107,9 +108,9 @@ class Blocks extends Component<Props, State> {
     const { match } = this.props;
 
     return (
-      <div className="container react-root">
+      <div className="container react-root Site">
         <Breadcrumbs match={match} />
-        <main>
+        <main className="Site-content">
           <Searchbar query="" />
           {BlockTable(blocks, match)}
           <br />
@@ -137,6 +138,7 @@ class Blocks extends Component<Props, State> {
             </div>
           )}
         </main>
+        <Footer />
       </div>
     );
   }
