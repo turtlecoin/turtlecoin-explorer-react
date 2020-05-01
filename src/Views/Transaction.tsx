@@ -24,9 +24,7 @@ class Transaction extends Component<Props, State> {
   }
 
   async componentDidMount() {
-    const fetchFunctions = [
-      this.getTransaction(),
-    ];
+    const fetchFunctions = [this.getTransaction()];
     Promise.all(fetchFunctions);
   }
 

@@ -39,8 +39,8 @@ class Pointers extends Component<Props, State> {
   async componentDidMount() {
     await this.getPointers();
 
-    client.onmessage = message => {
-      const msg =  JSON.parse(message.data as string);
+    client.onmessage = (message) => {
+      const msg = JSON.parse(message.data as string);
 
       if (msg.type === 'pointer') {
         const { pointers, displayedPointerCount } = this.state;
@@ -51,8 +51,8 @@ class Pointers extends Component<Props, State> {
         }
 
         this.setState({
-          pointers
-        })
+          pointers,
+        });
       }
     };
   }
@@ -100,24 +100,26 @@ class Pointers extends Component<Props, State> {
           {PointerTable(pointers, match)}
           <br />
           {pointers.length > 0 && (
-            <div
-              className={`button ${darkMode ? 'is-black' : ''}`}
-              ref={(ref) => (this.loadMoreRef = ref)}
-              data-tip="No pointers found"
-              data-type="error"
-              onClick={() => {
-                const { offset } = this.state;
-                this.setState(
-                  {
-                    offset: offset + offsetIncrement,
-                  },
-                  () => {
-                    this.getPointers();
-                  }
-                );
-              }}
-            >
-              Load More
+            <div className="frame">
+              <div
+                className={`button ${darkMode ? 'is-black' : ''}`}
+                ref={(ref) => (this.loadMoreRef = ref)}
+                data-tip="No pointers found"
+                data-type="error"
+                onClick={() => {
+                  const { offset } = this.state;
+                  this.setState(
+                    {
+                      offset: offset + offsetIncrement,
+                    },
+                    () => {
+                      this.getPointers();
+                    }
+                  );
+                }}
+              >
+                Load More
+              </div>
             </div>
           )}
         </main>

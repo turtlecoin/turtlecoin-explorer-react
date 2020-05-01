@@ -9,7 +9,6 @@ import { BlockTable } from '../Components/BlockTable';
 import { client } from '..';
 import { offsetIncrement } from '../Constants/config';
 
-
 type State = {
   blocks: any[];
   displayedBlockCount: number;
@@ -42,8 +41,8 @@ class Blocks extends Component<Props, State> {
   async componentDidMount() {
     await this.getBlocks();
 
-    client.onmessage = message => {
-      const msg =  JSON.parse(message.data as string);
+    client.onmessage = (message) => {
+      const msg = JSON.parse(message.data as string);
 
       if (msg.type === 'block') {
         const { blocks, displayedBlockCount } = this.state;
@@ -54,8 +53,8 @@ class Blocks extends Component<Props, State> {
         }
 
         this.setState({
-          blocks
-        })
+          blocks,
+        });
       }
     };
   }
@@ -81,7 +80,7 @@ class Blocks extends Component<Props, State> {
     const mergedBlocks = [...blocks, ...res.data.data];
     this.setState({
       blocks: mergedBlocks,
-      displayedBlockCount: mergedBlocks.length
+      displayedBlockCount: mergedBlocks.length,
     });
   }
 
@@ -115,24 +114,26 @@ class Blocks extends Component<Props, State> {
           {BlockTable(blocks, match)}
           <br />
           {blocks.length > 0 && (
-            <div
-              className={`button ${darkMode ? 'is-black' : ''}`}
-              ref={(ref) => (this.loadMoreRef = ref)}
-              data-tip="No blocks found"
-              data-type="error"
-              onClick={() => {
-                const { offset } = this.state;
-                this.setState(
-                  {
-                    offset: offset + offsetIncrement,
-                  },
-                  () => {
-                    this.getBlocks();
-                  }
-                );
-              }}
-            >
-              Load More
+            <div className="frame">
+              <div
+                className={`button ${darkMode ? 'is-black' : ''}`}
+                ref={(ref) => (this.loadMoreRef = ref)}
+                data-tip="No blocks found"
+                data-type="error"
+                onClick={() => {
+                  const { offset } = this.state;
+                  this.setState(
+                    {
+                      offset: offset + offsetIncrement,
+                    },
+                    () => {
+                      this.getBlocks();
+                    }
+                  );
+                }}
+              >
+                Load More
+              </div>
             </div>
           )}
         </main>

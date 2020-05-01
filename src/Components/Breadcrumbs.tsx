@@ -44,47 +44,49 @@ export class Breadcrumbs extends Component<Props, State> {
 
     return (
       <header>
-        <nav className="breadcrumb" aria-label="breadcrumbs">
-          <ul className="breadcrumb-list">
-            {pathParts.map((part: string) => {
-              switch (part) {
-                case '':
-                  return (
-                    <li
-                      key={`breadcrumb-${part}`}
-                      className={
-                        pathParts.indexOf(part) === pathParts.length - 1
-                          ? 'is-active'
-                          : ''
-                      }
-                    >
-                      <Link to="/">Explorer</Link>
-                    </li>
-                  );
-                default:
-                  return (
-                    <li
-                      key={`breadcrumb-${part}`}
-                      className={
-                        pathParts.indexOf(part) === pathParts.length - 1
-                          ? 'is-active'
-                          : ''
-                      }
-                    >
-                      <Link to={`/${part}`} className="breadcrumb-link">
-                        {pathParts.indexOf(part) <= 1 &&
-                          part.charAt(0).toUpperCase() + part.slice(1)}
-                        {pathParts.indexOf(part) > 1 &&
-                          (windowDimensions.width > 1023
-                            ? part
-                            : part.slice(0, 10))}
-                      </Link>
-                    </li>
-                  );
-              }
-            })}
-          </ul>
-        </nav>
+        <div className="frame">
+          <nav className="breadcrumb" aria-label="breadcrumbs">
+            <ul className="breadcrumb-list">
+              {pathParts.map((part: string) => {
+                switch (part) {
+                  case '':
+                    return (
+                      <li
+                        key={`breadcrumb-${part}`}
+                        className={
+                          pathParts.indexOf(part) === pathParts.length - 1
+                            ? 'is-active'
+                            : ''
+                        }
+                      >
+                        <Link to="/">Explorer</Link>
+                      </li>
+                    );
+                  default:
+                    return (
+                      <li
+                        key={`breadcrumb-${part}`}
+                        className={
+                          pathParts.indexOf(part) === pathParts.length - 1
+                            ? 'is-active'
+                            : ''
+                        }
+                      >
+                        <Link to={`/${part}`} className="breadcrumb-link">
+                          {pathParts.indexOf(part) <= 1 &&
+                            part.charAt(0).toUpperCase() + part.slice(1)}
+                          {pathParts.indexOf(part) > 1 &&
+                            (windowDimensions.width > 1023
+                              ? part
+                              : part.slice(0, 10))}
+                        </Link>
+                      </li>
+                    );
+                }
+              })}
+            </ul>
+          </nav>
+        </div>
       </header>
     );
   }

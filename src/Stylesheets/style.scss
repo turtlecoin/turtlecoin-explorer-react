@@ -21,11 +21,6 @@ html {
   }
 }
 
-body {
-  margin-left: 2ch;
-  margin-right: 2ch;
-}
-
 input {
   @media screen and (prefers-color-scheme: dark) {
     background-color: darken($dark, 6%) !important;
@@ -203,6 +198,16 @@ a:hover {
   max-width: 100vw;
 }
 
-.hljs {
-  margin-top: 15px;
+.frame {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+
+  @media screen and (max-width: $break-desktop) {
+    max-width: 95vw;
+  }
+
+  @media screen and (max-width: $break-mobile) {
+    max-width: 92vw;
+  }
 }

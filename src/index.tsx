@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { w3cwebsocket } from 'websocket';
-import { sleep } from './Utils/sleep';
 
 export let client = new w3cwebsocket(
   process.env.REACT_APP_WSS_URI!,
@@ -14,11 +13,11 @@ client.onopen = () => {
   console.log('Connected to wss.');
 };
 
-client.onclose = () => {}
+client.onclose = () => {};
 
 client.onerror = (error) => {
   console.error(error);
-}
+};
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
