@@ -103,7 +103,7 @@ class Transactions extends Component<Props, State> {
           {TransactionTable(transactions, match)}
           <br />
           {transactions.length > 0 && (
-            <div class="frame">
+            <div className="frame">
               <div
                 className={`button ${darkMode ? 'is-black' : ''}`}
                 ref={(ref) => (this.loadMoreRef = ref)}
