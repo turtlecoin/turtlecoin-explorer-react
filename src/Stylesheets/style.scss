@@ -1,8 +1,8 @@
 $green: #a6e22e;
-$pink: #f92672;
 $white-text: #ddd;
 $grey-text: #75715e;
 $dark: #272822;
+$red: #f92672;
 
 $gap: 5px;
 
@@ -142,6 +142,18 @@ a:hover {
   }
 }
 
+.pointer-hex-column {
+  @media screen and (max-width: $break-tablet) {
+    display: none;
+  }
+}
+
+.pointer-timestamp-column {
+  @media screen and (max-width: $break-mobile) {
+    display: none;
+  }
+}
+
 .navbar-menu {
   @media screen and (prefers-color-scheme: dark) {
     background-color: $black;
@@ -162,7 +174,7 @@ a:hover {
 }
 
 .footer {
-  margin-top: 20px;
+  margin-top: 10px;
   background-color: Transparent !important;
 }
 
@@ -170,24 +182,8 @@ a:hover {
   padding-bottom: 10px;
 }
 
-.pointer-hex-column {
-  @media screen and (max-width: $break-tablet) {
-    display: none;
-  }
-}
-
-.pointer-timestamp-column {
-  @media screen and (max-width: $break-mobile) {
-    display: none;
-  }
-}
-
 .translucent {
   opacity: 0.8;
-}
-
-.react-root {
-  padding-top: 20px;
 }
 
 .pointer-text-piece {
@@ -198,11 +194,11 @@ a:hover {
 .highlight-wrapper > pre {
   background-color: transparent;
   padding: 0;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .breadcrumb {
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .is-fullwidth {
@@ -210,7 +206,7 @@ a:hover {
 }
 
 .pointer-details {
-  padding-top: 15px;
+  padding-top: 10px;
 }
 
 .table-wrapper {
@@ -218,22 +214,15 @@ a:hover {
 }
 
 .frame {
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-
-  @media screen and (max-width: $break-desktop) {
-    max-width: 95vw;
-  }
-
-  @media screen and (max-width: $break-mobile) {
-    max-width: 92vw;
+  @media screen and (max-width: 968px) {
+    padding-left: 2ch;
+    padding-right: 2ch;
   }
 }
 
 .brand-link {
   @media screen and (prefers-color-scheme: dark) {
-    color: $grey-light !important;
+    color: $red !important;
   }
 }
 
