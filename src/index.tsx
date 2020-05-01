@@ -14,23 +14,10 @@ client.onopen = () => {
   console.log('Connected to wss.');
 };
 
-client.onclose = async () => {
-  await sleep(2000);
-  console.log('Attempting wss reconnect...')
-  client = new w3cwebsocket(
-    process.env.REACT_APP_WSS_URI!,
-    'echo-protocol'
-  );
-}
+client.onclose = () => {}
 
-client.onerror = async (error) => {
+client.onerror = (error) => {
   console.error(error);
-  await sleep(2000);
-  console.log('Attempting wss reconnect...')
-  client = new w3cwebsocket(
-    process.env.REACT_APP_WSS_URI!,
-    'echo-protocol'
-  );
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
