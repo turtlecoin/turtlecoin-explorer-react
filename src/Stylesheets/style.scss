@@ -217,7 +217,12 @@ a:hover {
   @media screen and (max-width: 968px) {
     padding-left: 2ch;
     padding-right: 2ch;
+    padding-bottom: 20px;
   }
+}
+
+.frame:first-of-type {
+  padding-top: 20px;
 }
 
 .brand-link {
