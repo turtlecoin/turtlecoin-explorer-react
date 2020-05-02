@@ -1,8 +1,10 @@
 $green: #a6e22e;
-$pink: #f92672;
 $white-text: #ddd;
 $grey-text: #75715e;
 $dark: #272822;
+$red: #f92672;
+
+$gap: 5px;
 
 $navbar-height: 5rem;
 
@@ -17,6 +19,16 @@ html {
   @media screen and (prefers-color-scheme: dark) {
     background-color: $black;
   }
+}
+
+.Site {
+  display: flex;
+  min-height: calc(100vh - 80px);
+  flex-direction: column;
+}
+
+.Site-content {
+  flex: 1;
 }
 
 input {
@@ -130,6 +142,18 @@ a:hover {
   }
 }
 
+.pointer-hex-column {
+  @media screen and (max-width: $break-tablet) {
+    display: none;
+  }
+}
+
+.pointer-timestamp-column {
+  @media screen and (max-width: $break-mobile) {
+    display: none;
+  }
+}
+
 .navbar-menu {
   @media screen and (prefers-color-scheme: dark) {
     background-color: $black;
@@ -149,24 +173,17 @@ a:hover {
   }
 }
 
-.pointer-hex-column {
-  @media screen and (max-width: $break-tablet) {
-    display: none;
-  }
+.footer {
+  margin-top: 10px;
+  background-color: Transparent !important;
 }
 
-.pointer-timestamp-column {
-  @media screen and (max-width: $break-mobile) {
-    display: none;
-  }
+.searchbar {
+  padding-bottom: 10px;
 }
 
 .translucent {
   opacity: 0.8;
-}
-
-.react-root {
-  padding-top: 20px;
 }
 
 .pointer-text-piece {
@@ -177,11 +194,11 @@ a:hover {
 .highlight-wrapper > pre {
   background-color: transparent;
   padding: 0;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .breadcrumb {
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .is-fullwidth {
@@ -189,13 +206,28 @@ a:hover {
 }
 
 .pointer-details {
-  padding-top: 15px;
+  padding-top: 10px;
 }
 
 .table-wrapper {
   max-width: 100vw;
 }
 
-.hljs {
-  margin-top: 15px;
+.frame {
+  @media screen and (max-width: 968px) {
+    padding-left: 2ch;
+    padding-right: 2ch;
+  }
+}
+
+.brand-link {
+  @media screen and (prefers-color-scheme: dark) {
+    color: $red !important;
+  }
+}
+
+.brand-link:hover {
+  @media screen and (prefers-color-scheme: dark) {
+    color: $white-text !important;
+  }
 }

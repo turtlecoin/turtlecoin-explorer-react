@@ -4,6 +4,7 @@ import Highlight from 'react-highlight.js';
 import { Searchbar } from '../Components/Searchbar';
 import { darkMode } from '../App';
 import { Breadcrumbs } from '../Components/Breadcrumbs';
+import { Footer } from '../Components/Footer';
 
 type State = {
   block: any;
@@ -37,9 +38,9 @@ class Block extends Component<Props, State> {
     const { block } = this.state;
     const { match } = this.props;
     return (
-      <div className="container react-root">
+      <div className="container react-root Site">
         <Breadcrumbs match={match} />
-        <main>
+        <main className="Site-content">
           <Searchbar query="" />
           {block.length > 0 && (
             <div
@@ -53,6 +54,7 @@ class Block extends Component<Props, State> {
             </div>
           )}
         </main>
+        <Footer />
       </div>
     );
   }

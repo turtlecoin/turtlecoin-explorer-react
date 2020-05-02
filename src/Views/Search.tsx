@@ -5,6 +5,7 @@ import { PointerTable } from '../Components/PointerTable';
 import { Breadcrumbs } from '../Components/Breadcrumbs';
 import { BlockTable } from '../Components/BlockTable';
 import { TransactionTable } from '../Components/TransactionTable';
+import { Footer } from '../Components/Footer';
 
 type State = {
   results: any[];
@@ -76,9 +77,9 @@ export class Search extends Component<Props, State> {
     const [pointers, blocks, transactions] = results;
 
     return (
-      <div className="container react-root">
+      <div className="container react-root Site">
         <Breadcrumbs match={match} />
-        <main>
+        <main className="Site-content">
           <Searchbar query={match.params.query} />
           {pointers && PointerTable(pointers, match)}
           {blocks && BlockTable(blocks, match)}
@@ -90,6 +91,7 @@ export class Search extends Component<Props, State> {
             transactions &&
             transactions.length === 0 && <p>No results found!</p>}
         </main>
+        <Footer />
       </div>
     );
   }

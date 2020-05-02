@@ -1,14 +1,13 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import Highlight from 'react-highlight.js';
 import { Searchbar } from '../Components/Searchbar';
 import { darkMode } from '../App';
 import { Breadcrumbs } from '../Components/Breadcrumbs';
+import { Footer } from '../Components/Footer';
 
 type State = {
   transaction: any;
-  inputs: any[];
-  outputs: any[];
 };
 
 type Props = {
@@ -21,18 +20,12 @@ class Transaction extends Component<Props, State> {
     super(props);
     this.state = {
       transaction: [],
-      inputs: [],
-      outputs: [],
     };
     this.getTransaction = this.getTransaction.bind(this);
   }
 
   async componentDidMount() {
-    const fetchFunctions = [
-      this.getTransaction(),
-      this.getInputs(),
-      this.getOutputs(),
-    ];
+    const fetchFunctions = [this.getTransaction()];
     Promise.all(fetchFunctions);
   }
 
@@ -46,35 +39,13 @@ class Transaction extends Component<Props, State> {
     });
   }
 
-  async getInputs() {
-    const { match } = this.props;
-    const res = await axios.get(
-      `${process.env.REACT_APP_API_URI}/inputs/${match.params.hash}`
-    );
-    console.log(res);
-    this.setState({
-      inputs: res.data.data,
-    });
-  }
-
-  async getOutputs() {
-    const { match } = this.props;
-    const res = await axios.get(
-      `${process.env.REACT_APP_API_URI}/outputs/${match.params.hash}`
-    );
-    console.log(res);
-    this.setState({
-      outputs: res.data.data,
-    });
-  }
-
   render() {
-    const { transaction, inputs, outputs } = this.state;
+    const { transaction } = this.state;
     const { match } = this.props;
     return (
-      <div className="container react-root">
+      <div className="container react-root Site">
         <Breadcrumbs match={match} />
-        <main>
+        <main className="Site-content">
           <Searchbar query="" />
           {transaction.length > 0 && (
             <div
@@ -87,35 +58,8 @@ class Transaction extends Component<Props, State> {
               </Highlight>
             </div>
           )}
-          {inputs.length > 0 && (
-            <Fragment>
-              <h2 className="subtitle">Inputs</h2>
-              <div
-                className={`${
-                  darkMode ? 'monokai' : 'github'
-                } highlight-wrapper transaction-details`}
-              >
-                <Highlight language="english">
-                  {JSON.stringify(inputs, null, 2)}
-                </Highlight>
-              </div>
-            </Fragment>
-          )}
-          {outputs.length > 0 && (
-            <Fragment>
-              <h2 className="subtitle">Outputs</h2>
-              <div
-                className={`${
-                  darkMode ? 'monokai' : 'github'
-                } highlight-wrapper transaction-details`}
-              >
-                <Highlight language="english">
-                  {JSON.stringify(outputs, null, 2)}
-                </Highlight>
-              </div>
-            </Fragment>
-          )}
         </main>
+        <Footer />
       </div>
     );
   }

@@ -8,6 +8,7 @@ import { Breadcrumbs } from '../Components/Breadcrumbs';
 import { TransactionTable } from '../Components/TransactionTable';
 import { client } from '..';
 import { offsetIncrement } from '../Constants/config';
+import { Footer } from '../Components/Footer';
 
 type State = {
   transactions: any[];
@@ -39,9 +40,8 @@ class Transactions extends Component<Props, State> {
   async componentDidMount() {
     await this.getTransactions();
 
-
-    client.onmessage = message => {
-      const msg =  JSON.parse(message.data as string);
+    client.onmessage = (message) => {
+      const msg = JSON.parse(message.data as string);
 
       if (msg.type === 'tx') {
         const { transactions, displayedTransactionCount } = this.state;
@@ -52,8 +52,8 @@ class Transactions extends Component<Props, State> {
         }
 
         this.setState({
-          transactions
-        })
+          transactions,
+        });
       }
     };
   }
@@ -82,7 +82,7 @@ class Transactions extends Component<Props, State> {
     const mergedTransactions = [...transactions, ...res.data.data];
     this.setState({
       transactions: mergedTransactions,
-      displayedTransactionCount: mergedTransactions.length
+      displayedTransactionCount: mergedTransactions.length,
     });
   }
 
@@ -97,34 +97,37 @@ class Transactions extends Component<Props, State> {
     const { match } = this.props;
 
     return (
-      <div className="container react-root">
+      <div className="container react-root Site">
         <Breadcrumbs match={match} />
-        <main>
+        <main className="Site-content">
           <Searchbar query="" />
           {TransactionTable(transactions, match)}
           <br />
           {transactions.length > 0 && (
-            <div
-              className={`button ${darkMode ? 'is-black' : ''}`}
-              ref={(ref) => (this.loadMoreRef = ref)}
-              data-tip="No transactions found"
-              data-type="error"
-              onClick={() => {
-                const { offset } = this.state;
-                this.setState(
-                  {
-                    offset: offset + offsetIncrement,
-                  },
-                  () => {
-                    this.getTransactions();
-                  }
-                );
-              }}
-            >
-              Load More
+            <div className="frame">
+              <div
+                className={`button ${darkMode ? 'is-black' : ''}`}
+                ref={(ref) => (this.loadMoreRef = ref)}
+                data-tip="No transactions found"
+                data-type="error"
+                onClick={() => {
+                  const { offset } = this.state;
+                  this.setState(
+                    {
+                      offset: offset + offsetIncrement,
+                    },
+                    () => {
+                      this.getTransactions();
+                    }
+                  );
+                }}
+              >
+                Load More
+              </div>
             </div>
           )}
         </main>
+        <Footer />
       </div>
     );
   }
