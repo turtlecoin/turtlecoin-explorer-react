@@ -51,7 +51,7 @@ export const PointerTable = (pointers: any[], match: any) => {
                 </span>
               </td>
               <td className="pointer-timestamp-column">
-                {new Date(pointer.timestamp).toLocaleString()}
+                {new Date(pointer.timestamp * 1000).toLocaleString()}
               </td>
             </tr>
           ))}

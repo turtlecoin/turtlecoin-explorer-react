@@ -36,7 +36,7 @@ export const BlockTable = (blocks: any[], match: any) => {
               </td>
               <td className="block-hash-column">{block.hash}</td>
               <td className="block-timestamp-column">
-                {new Date(block.timestamp).toLocaleString()}
+                {new Date(block.timestamp * 1000).toLocaleString()}
               </td>
             </tr>
           ))}
