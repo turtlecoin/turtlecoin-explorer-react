@@ -18,7 +18,18 @@ export class Footer extends Component<Props, State> {
     return (
       <footer className="footer">
         <div className="content has-text-right">
-          <p>Designed for TurtleCoin® with <FontAwesomeIcon className="has-text-danger" icon={faHeart} /> by <a className="brand-link" href="https://logicbite.org/" target="__new" rel="noopener noreferrer">LogicBite LLC</a></p>
+          <p>
+            Designed for TurtleCoin® with{' '}
+            <FontAwesomeIcon className="has-text-danger" icon={faHeart} /> by{' '}
+            <a
+              className="brand-link"
+              href="https://logicbite.org/"
+              target="__new"
+              rel="noopener noreferrer"
+            >
+              LogicBite LLC
+            </a>
+          </p>
         </div>
       </footer>
     );

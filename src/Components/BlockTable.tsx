@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExpand } from '@fortawesome/free-solid-svg-icons';
-import { formatLikeCurrency } from '../Utils/formatLikeCurrency';
+import { formatLikeCurrency } from '../Utils/prettyPrint';
 
 export const BlockTable = (blocks: any[], match: any) => {
   if (blocks.length === 0 || !blocks) {
