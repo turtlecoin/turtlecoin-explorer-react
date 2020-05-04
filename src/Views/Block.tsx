@@ -12,7 +12,7 @@ import {
   faBalanceScale,
   faCodeBranch,
   faRandom,
-  faHandHoldingUsd,
+  faMoneyBill,
 } from '@fortawesome/free-solid-svg-icons';
 import { formatLikeCurrency } from '../Utils/prettyPrint';
 import { getWindowDimensions } from '../Utils/getWindowDimensions';
@@ -138,7 +138,7 @@ class Block extends Component<Props, State> {
                   <div className="panel">
                     <p className="panel-heading">
                       <span className="panel-heading-icon">
-                        <FontAwesomeIcon icon={faHandHoldingUsd} />
+                        <FontAwesomeIcon icon={faMoneyBill} />
                       </span>
                       Transactions
                     </p>
