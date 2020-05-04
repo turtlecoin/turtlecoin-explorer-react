@@ -12,6 +12,7 @@ import {
   faCube,
 } from '@fortawesome/free-solid-svg-icons';
 import { getWindowDimensions } from '../Utils/getWindowDimensions';
+import { Head } from '../Components/Head';
 
 type State = {
   pointer: any;
@@ -59,6 +60,7 @@ class Pointer extends Component<Props, State> {
     const { match } = this.props;
     return (
       <div className="container react-root Site">
+        <Head match={match} />
         <Breadcrumbs match={match} />
         <main className="Site-content">
           <Searchbar query="" />

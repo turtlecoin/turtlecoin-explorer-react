@@ -11,6 +11,7 @@ import { offsetIncrement } from '../Constants/config';
 import { Footer } from '../Components/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCubes } from '@fortawesome/free-solid-svg-icons';
+import { Head } from '../Components/Head';
 
 type State = {
   blocks: any[];
@@ -111,17 +112,20 @@ class Blocks extends Component<Props, State> {
 
     return (
       <div className="container react-root Site">
+        <Head match={match} />
         <Breadcrumbs match={match} />
         <main className="Site-content">
           <Searchbar query="" />
-          <div className="panel">
-            <p className="panel-heading">
-              <span className="panel-heading-icon">
-                <FontAwesomeIcon icon={faCubes} />
-              </span>
-              Blocks
-            </p>
-            {BlockTable(blocks, match)}
+          <div className="panel-wrapper">
+            <div className="panel">
+              <p className="panel-heading">
+                <span className="panel-heading-icon">
+                  <FontAwesomeIcon icon={faCubes} />
+                </span>
+                Blocks
+              </p>
+              {BlockTable(blocks, match)}
+            </div>
           </div>
           <br />
           {blocks.length > 0 && (

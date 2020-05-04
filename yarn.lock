@@ -1473,6 +1473,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-helmet@^5.0.15":
+  version "5.0.15"
+  resolved "https://registry.yarnpkg.com/@types/react-helmet/-/react-helmet-5.0.15.tgz#af0370617307e9f062c6aee0f1f5588224ce646e"
+  integrity sha512-CCjqvecDJTXRrHG8aTc2YECcQCl26za/q+NaBRvy/wtm0Uh38koM2dpv2bG1xJV4ckz3t1lm2/5KU6nt2s9BWg==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-router-dom@^5.1.4":
   version "5.1.4"
   resolved "https://registry.yarnpkg.com/@types/react-router-dom/-/react-router-dom-5.1.4.tgz#8d3e0306df74af301cc896309e7d4758f1a4bf71"

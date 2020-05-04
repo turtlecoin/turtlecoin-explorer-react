@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Head } from '../Components/Head';
 import { Searchbar } from '../Components/Searchbar';
 import { Breadcrumbs } from '../Components/Breadcrumbs';
 import { Footer } from '../Components/Footer';
@@ -63,6 +64,7 @@ class Block extends Component<Props, State> {
     const { match } = this.props;
     return (
       <div className="container react-root Site">
+        <Head match={match} />
         <Breadcrumbs match={match} />
         <main className="Site-content">
           <Searchbar query="" />

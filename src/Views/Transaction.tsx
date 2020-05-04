@@ -8,7 +8,6 @@ import {
   faCube,
   faClock,
   faBalanceScale,
-  faHandHoldingUsd,
   faCoins,
   faTag,
   faCertificate,
@@ -16,10 +15,12 @@ import {
   faKey,
   faUnlock,
   faCodeBranch,
+  faMoneyBill,
 } from '@fortawesome/free-solid-svg-icons';
 import { formatLikeCurrency, prettyPrint } from '../Utils/prettyPrint';
 import { getWindowDimensions } from '../Utils/getWindowDimensions';
 import { PointerTable } from '../Components/PointerTable';
+import { Head } from '../Components/Head';
 
 type State = {
   transaction: any;
@@ -65,8 +66,11 @@ class Transaction extends Component<Props, State> {
   render() {
     const { transaction, windowDimensions } = this.state;
     const { match } = this.props;
+
+    console.log(transaction);
     return (
       <div className="container react-root Site">
+        <Head match={match} />
         <Breadcrumbs match={match} />
         <main className="Site-content">
           <Searchbar query="" />
@@ -76,7 +80,7 @@ class Transaction extends Component<Props, State> {
                 <div className="panel is-hoverable is-family-monospace">
                   <p className="panel-heading">
                     <span className="panel-heading-icon">
-                      <FontAwesomeIcon icon={faHandHoldingUsd} />
+                      <FontAwesomeIcon icon={faMoneyBill} />
                     </span>
                     {windowDimensions.width > 1023
                       ? row.hash

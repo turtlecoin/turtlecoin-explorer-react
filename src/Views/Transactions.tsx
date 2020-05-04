@@ -11,6 +11,7 @@ import { offsetIncrement } from '../Constants/config';
 import { Footer } from '../Components/Footer';
 import { faMoneyBill } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Head } from '../Components/Head';
 
 type State = {
   transactions: any[];
@@ -100,17 +101,20 @@ class Transactions extends Component<Props, State> {
 
     return (
       <div className="container react-root Site">
+        <Head match={match} />
         <Breadcrumbs match={match} />
         <main className="Site-content">
           <Searchbar query="" />
-          <div className="panel">
-            <p className="panel-heading">
-              <span className="panel-heading-icon">
-                <FontAwesomeIcon icon={faMoneyBill} />
-              </span>
-              Transactions
-            </p>
-            {TransactionTable(transactions, match)}
+          <div className="panel-wrapper">
+            <div className="panel">
+              <p className="panel-heading">
+                <span className="panel-heading-icon">
+                  <FontAwesomeIcon icon={faMoneyBill} />
+                </span>
+                Transactions
+              </p>
+              {TransactionTable(transactions, match)}
+            </div>
           </div>
           <br />
           {transactions.length > 0 && (

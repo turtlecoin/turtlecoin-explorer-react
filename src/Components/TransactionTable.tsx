@@ -5,11 +5,10 @@ import {
   faExpand,
   faCoins,
   faDollarSign,
-  faBalanceScale,
   faHashtag,
   faClock,
 } from '@fortawesome/free-solid-svg-icons';
-import { prettyPrint, formatLikeCurrency } from '../Utils/prettyPrint';
+import { prettyPrint } from '../Utils/prettyPrint';
 
 export const TransactionTable = (transactions: any[], match: any) => {
   if (transactions.length === 0 || !transactions) {

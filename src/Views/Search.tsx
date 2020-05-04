@@ -8,6 +8,7 @@ import { TransactionTable } from '../Components/TransactionTable';
 import { Footer } from '../Components/Footer';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Head } from '../Components/Head';
 
 type State = {
   results: any[];
@@ -80,6 +81,7 @@ export class Search extends Component<Props, State> {
 
     return (
       <div className="container react-root Site">
+        <Head match={match} />
         <Breadcrumbs match={match} />
         <main className="Site-content">
           <Searchbar query={match.params.query} />
