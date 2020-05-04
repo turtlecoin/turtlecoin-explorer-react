@@ -15,9 +15,11 @@ import {
   faDollarSign,
   faKey,
   faUnlock,
+  faCodeBranch,
 } from '@fortawesome/free-solid-svg-icons';
 import { formatLikeCurrency, prettyPrint } from '../Utils/prettyPrint';
 import { getWindowDimensions } from '../Utils/getWindowDimensions';
+import { PointerTable } from '../Components/PointerTable';
 
 type State = {
   transaction: any;
@@ -69,130 +71,145 @@ class Transaction extends Component<Props, State> {
         <main className="Site-content">
           <Searchbar query="" />
           {transaction.map((row: any) => (
-            <div className="panel-wrapper" key={row.hash}>
-              <div className="panel is-hoverable is-family-monospace">
-                <p className="panel-heading">
-                  <span className="panel-heading-icon">
-                    <FontAwesomeIcon icon={faHandHoldingUsd} />
-                  </span>
-                  {windowDimensions.width > 1023
-                    ? row.hash
-                    : row.hash.slice(0, 10)}
-                </p>
-                <div className="panel-block">
-                  <span className="panel-icon">
-                    <FontAwesomeIcon icon={faCoins} />
-                  </span>
-                  <span className="panel-label">
-                    Amount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  </span>
-                  <span className="panel-value">
-                    {prettyPrint(row.amount)} TRTL
-                  </span>
-                </div>
-                <div className="panel-block">
-                  <span className="panel-icon">
-                    <FontAwesomeIcon icon={faClock} />
-                  </span>
-                  <span className="panel-label">
-                    Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  </span>
-                  <span className="panel-value">
-                    {new Date(row.timestamp * 1000).toLocaleString()}
-                  </span>
-                </div>
-                {row.payment_id && (
+            <div key={row.hash}>
+              <div className="panel-wrapper">
+                <div className="panel is-hoverable is-family-monospace">
+                  <p className="panel-heading">
+                    <span className="panel-heading-icon">
+                      <FontAwesomeIcon icon={faHandHoldingUsd} />
+                    </span>
+                    {windowDimensions.width > 1023
+                      ? row.hash
+                      : row.hash.slice(0, 10)}
+                  </p>
                   <div className="panel-block">
                     <span className="panel-icon">
-                      <FontAwesomeIcon icon={faTag} />
+                      <FontAwesomeIcon icon={faCoins} />
                     </span>
                     <span className="panel-label">
-                      Payment ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      Amount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </span>
                     <span className="panel-value">
-                      <a href={`/search/${row.payment_id}`}>
+                      {prettyPrint(row.amount)} TRTL
+                    </span>
+                  </div>
+                  <div className="panel-block">
+                    <span className="panel-icon">
+                      <FontAwesomeIcon icon={faClock} />
+                    </span>
+                    <span className="panel-label">
+                      Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span className="panel-value">
+                      {new Date(row.timestamp * 1000).toLocaleString()}
+                    </span>
+                  </div>
+                  {row.payment_id && (
+                    <div className="panel-block">
+                      <span className="panel-icon">
+                        <FontAwesomeIcon icon={faTag} />
+                      </span>
+                      <span className="panel-label">
+                        Payment ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </span>
+                      <span className="panel-value">
+                        <a href={`/search/${row.payment_id}`}>
+                          {windowDimensions.width > 1023
+                            ? row.payment_id
+                            : row.payment_id.slice(0, 10)}
+                        </a>
+                      </span>
+                    </div>
+                  )}
+                  {row.fee < 0 && (
+                    <div className="panel-block">
+                      <span className="panel-icon">
+                        <FontAwesomeIcon icon={faCertificate} />
+                      </span>
+                      <span className="panel-label">
+                        Coin Birth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </span>
+                      <span className="panel-value">
+                        {prettyPrint(Math.abs(row.fee))} TRTL
+                      </span>
+                    </div>
+                  )}
+                  {row.fee > 0 && (
+                    <div className="panel-block">
+                      <span className="panel-icon">
+                        <FontAwesomeIcon icon={faDollarSign} />
+                      </span>
+                      <span className="panel-label">
+                        Fee&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </span>
+                      <span className="panel-value">
+                        {prettyPrint(row.fee)} TRTL
+                      </span>
+                    </div>
+                  )}
+                  <div className="panel-block">
+                    <span className="panel-icon">
+                      <FontAwesomeIcon icon={faBalanceScale} />
+                    </span>
+                    <span className="panel-label">
+                      Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span className="panel-value">
+                      {formatLikeCurrency(row.size)} bytes
+                    </span>
+                  </div>
+                  <div className="panel-block">
+                    <span className="panel-icon">
+                      <FontAwesomeIcon icon={faUnlock} />
+                    </span>
+                    <span className="panel-label">
+                      Unlock Time&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span className="panel-value">{row.unlock_time}</span>
+                  </div>
+                  <div className="panel-block">
+                    <span className="panel-icon">
+                      <FontAwesomeIcon icon={faKey} />
+                    </span>
+                    <span className="panel-label">
+                      Public Key&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span className="panel-value">
+                      {windowDimensions.width > 1023
+                        ? row.public_key
+                        : row.public_key.slice(0, 10)}
+                    </span>
+                  </div>
+                  <div className="panel-block">
+                    <span className="panel-icon">
+                      <FontAwesomeIcon icon={faCube} />
+                    </span>
+                    <span className="panel-label">
+                      Block&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span className="panel-value">
+                      <a href={`/blocks/${row.block}`}>
                         {windowDimensions.width > 1023
-                          ? row.payment_id
-                          : row.payment_id.slice(0, 10)}
+                          ? row.block
+                          : row.block.slice(0, 10)}
                       </a>
                     </span>
                   </div>
-                )}
-                {row.fee < 0 && (
-                  <div className="panel-block">
-                    <span className="panel-icon">
-                      <FontAwesomeIcon icon={faCertificate} />
-                    </span>
-                    <span className="panel-label">
-                      Coin Birth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span>
-                    <span className="panel-value">
-                      {prettyPrint(Math.abs(row.fee))} TRTL
-                    </span>
-                  </div>
-                )}
-                {row.fee > 0 && (
-                  <div className="panel-block">
-                    <span className="panel-icon">
-                      <FontAwesomeIcon icon={faDollarSign} />
-                    </span>
-                    <span className="panel-label">
-                      Fee&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span>
-                    <span className="panel-value">
-                      {prettyPrint(row.fee)} TRTL
-                    </span>
-                  </div>
-                )}
-                <div className="panel-block">
-                  <span className="panel-icon">
-                    <FontAwesomeIcon icon={faBalanceScale} />
-                  </span>
-                  <span className="panel-label">
-                    Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  </span>
-                  <span className="panel-value">
-                    {formatLikeCurrency(row.size)} bytes
-                  </span>
-                </div>
-                <div className="panel-block">
-                  <span className="panel-icon">
-                    <FontAwesomeIcon icon={faUnlock} />
-                  </span>
-                  <span className="panel-label">
-                    Unlock Time&nbsp;&nbsp;&nbsp;&nbsp;
-                  </span>
-                  <span className="panel-value">{row.unlock_time}</span>
-                </div>
-                <div className="panel-block">
-                  <span className="panel-icon">
-                    <FontAwesomeIcon icon={faKey} />
-                  </span>
-                  <span className="panel-label">
-                    Public Key&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  </span>
-                  <span className="panel-value">
-                    {windowDimensions.width > 1023
-                      ? row.public_key
-                      : row.public_key.slice(0, 10)}
-                  </span>
-                </div>
-                <div className="panel-block">
-                  <span className="panel-icon">
-                    <FontAwesomeIcon icon={faCube} />
-                  </span>
-                  <span className="panel-label">
-                    Block&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  </span>
-                  <span className="panel-value">
-                    <a href={`/blocks/${row.block}`}>
-                      {windowDimensions.width > 1023
-                        ? row.block
-                        : row.block.slice(0, 10)}
-                    </a>
-                  </span>
                 </div>
               </div>
+              {row.pointers.length > 0 && (
+                <div className="panel-wrapper">
+                  <div className="panel">
+                    <p className="panel-heading">
+                      <span className="panel-heading-icon">
+                        <FontAwesomeIcon icon={faCodeBranch} />
+                      </span>
+                      Pointers
+                    </p>
+                    {PointerTable(row.pointers, match)}
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </main>

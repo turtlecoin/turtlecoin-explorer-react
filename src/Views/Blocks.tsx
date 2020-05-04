@@ -9,6 +9,8 @@ import { BlockTable } from '../Components/BlockTable';
 import { client } from '..';
 import { offsetIncrement } from '../Constants/config';
 import { Footer } from '../Components/Footer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCubes } from '@fortawesome/free-solid-svg-icons';
 
 type State = {
   blocks: any[];
@@ -112,7 +114,15 @@ class Blocks extends Component<Props, State> {
         <Breadcrumbs match={match} />
         <main className="Site-content">
           <Searchbar query="" />
-          {BlockTable(blocks, match)}
+          <div className="panel">
+            <p className="panel-heading">
+              <span className="panel-heading-icon">
+                <FontAwesomeIcon icon={faCubes} />
+              </span>
+              Blocks
+            </p>
+            {BlockTable(blocks, match)}
+          </div>
           <br />
           {blocks.length > 0 && (
             <div className="frame">

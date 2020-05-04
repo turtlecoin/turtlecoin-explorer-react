@@ -11,9 +11,11 @@ import {
   faBalanceScale,
   faCodeBranch,
   faRandom,
+  faHandHoldingUsd,
 } from '@fortawesome/free-solid-svg-icons';
 import { formatLikeCurrency } from '../Utils/prettyPrint';
 import { getWindowDimensions } from '../Utils/getWindowDimensions';
+import { TransactionTable } from '../Components/TransactionTable';
 
 type State = {
   block: any;
@@ -65,68 +67,83 @@ class Block extends Component<Props, State> {
         <main className="Site-content">
           <Searchbar query="" />
           {block.map((row: any) => (
-            <div className="panel-wrapper" key={row.hash}>
-              <div className="panel is-hoverable is-family-monospace">
-                <p className="panel-heading">
-                  <span className="panel-heading-icon">
-                    <FontAwesomeIcon icon={faCube} />
-                  </span>
-                  {windowDimensions.width > 1023
-                    ? row.hash
-                    : row.hash.slice(0, 10)}
-                </p>
-                <div className="panel-block">
-                  <span className="panel-icon">
-                    <FontAwesomeIcon icon={faArrowAltCircleUp} />
-                  </span>
-                  <span className="panel-label">
-                    Height&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  </span>
-                  <span className="panel-value">
-                    {formatLikeCurrency(row.height)}
-                  </span>
-                </div>
-                <div className="panel-block">
-                  <span className="panel-icon">
-                    <FontAwesomeIcon icon={faClock} />
-                  </span>
-                  <span className="panel-label">
-                    Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  </span>
-                  <span className="panel-value">
-                    {new Date(row.timestamp * 1000).toLocaleString()}
-                  </span>
-                </div>
-                <div className="panel-block">
-                  <span className="panel-icon">
-                    <FontAwesomeIcon icon={faBalanceScale} />
-                  </span>
-                  <span className="panel-label">
-                    Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  </span>
-                  <span className="panel-value">
-                    {formatLikeCurrency(row.size)} bytes
-                  </span>
-                </div>
-                <div className="panel-block">
-                  <span className="panel-icon">
-                    <FontAwesomeIcon icon={faCodeBranch} />
-                  </span>
-                  <span className="panel-label">
-                    Version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  </span>
-                  <span className="panel-value">{`${row.major_version}.${row.minor_version}`}</span>
-                </div>
-                <div className="panel-block">
-                  <span className="panel-icon">
-                    <FontAwesomeIcon icon={faRandom} />
-                  </span>
-                  <span className="panel-label">
-                    Nonce&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  </span>
-                  <span className="panel-value">{row.nonce}</span>
+            <div key={row.hash}>
+              <div className="panel-wrapper">
+                <div className="panel is-hoverable is-family-monospace">
+                  <p className="panel-heading">
+                    <span className="panel-heading-icon">
+                      <FontAwesomeIcon icon={faCube} />
+                    </span>
+                    {windowDimensions.width > 1023
+                      ? row.hash
+                      : row.hash.slice(0, 10)}
+                  </p>
+                  <div className="panel-block">
+                    <span className="panel-icon">
+                      <FontAwesomeIcon icon={faArrowAltCircleUp} />
+                    </span>
+                    <span className="panel-label">
+                      Height&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span className="panel-value">
+                      {formatLikeCurrency(row.height)}
+                    </span>
+                  </div>
+                  <div className="panel-block">
+                    <span className="panel-icon">
+                      <FontAwesomeIcon icon={faClock} />
+                    </span>
+                    <span className="panel-label">
+                      Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span className="panel-value">
+                      {new Date(row.timestamp * 1000).toLocaleString()}
+                    </span>
+                  </div>
+                  <div className="panel-block">
+                    <span className="panel-icon">
+                      <FontAwesomeIcon icon={faBalanceScale} />
+                    </span>
+                    <span className="panel-label">
+                      Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span className="panel-value">
+                      {formatLikeCurrency(row.size)} bytes
+                    </span>
+                  </div>
+                  <div className="panel-block">
+                    <span className="panel-icon">
+                      <FontAwesomeIcon icon={faCodeBranch} />
+                    </span>
+                    <span className="panel-label">
+                      Version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span className="panel-value">{`${row.major_version}.${row.minor_version}`}</span>
+                  </div>
+                  <div className="panel-block">
+                    <span className="panel-icon">
+                      <FontAwesomeIcon icon={faRandom} />
+                    </span>
+                    <span className="panel-label">
+                      Nonce&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span className="panel-value">{row.nonce}</span>
+                  </div>
                 </div>
               </div>
+              {row.transactions.length && (
+                <div className="panel-wrapper">
+                  <div className="panel">
+                    <p className="panel-heading">
+                      <span className="panel-heading-icon">
+                        <FontAwesomeIcon icon={faHandHoldingUsd} />
+                      </span>
+                      Transactions
+                    </p>
+                    {TransactionTable(row.transactions, match)}
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </main>

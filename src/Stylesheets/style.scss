@@ -8,6 +8,8 @@ $gap: 5px;
 
 $navbar-height: 5rem;
 
+$message-body-border-width: 0px;
+
 @import '../../node_modules/bulma/bulma.sass';
 
 $break-mobile: 768px;
@@ -251,6 +253,7 @@ a:hover {
 
 .panel-wrapper {
   padding-top: 10px;
+  padding-bottom: 30px;
 }
 
 .panel-heading {
@@ -276,6 +279,18 @@ a:hover {
 
 .panel-block:hover {
   @media screen and (prefers-color-scheme: dark) {
-    background-color: darken($black, 2%);
+    background-color: darken($black, 4%);
+  }
+}
+
+.message {
+  @media screen and (prefers-color-scheme: dark) {
+    background-color: Transparent;
+  }
+}
+
+.message-body {
+  @media screen and (prefers-color-scheme: dark) {
+    color: $white-text;
   }
 }

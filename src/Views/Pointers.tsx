@@ -9,6 +9,8 @@ import { Breadcrumbs } from '../Components/Breadcrumbs';
 import { client } from '..';
 import { offsetIncrement } from '../Constants/config';
 import { Footer } from '../Components/Footer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCodeBranch } from '@fortawesome/free-solid-svg-icons';
 
 type State = {
   pointers: any[];
@@ -98,7 +100,15 @@ class Pointers extends Component<Props, State> {
         <Breadcrumbs match={match} />
         <main className="Site-content">
           <Searchbar query="" />
-          {PointerTable(pointers, match)}
+          <div className="panel">
+            <p className="panel-heading">
+              <span className="panel-heading-icon">
+                <FontAwesomeIcon icon={faCodeBranch} />
+              </span>
+              Pointers
+            </p>
+            {PointerTable(pointers, match)}
+          </div>
           <br />
           {pointers.length > 0 && (
             <div className="frame">

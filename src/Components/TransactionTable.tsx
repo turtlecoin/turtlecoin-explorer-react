@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faExpand,
-  faHandHoldingUsd,
   faCoins,
   faDollarSign,
   faBalanceScale,
+  faHashtag,
+  faClock,
 } from '@fortawesome/free-solid-svg-icons';
 import { prettyPrint, formatLikeCurrency } from '../Utils/prettyPrint';
 
@@ -20,9 +21,15 @@ export const TransactionTable = (transactions: any[], match: any) => {
         <thead>
           <tr>
             <th />
+            <th className="tx-size-column">
+              <span className="table-header-icon">
+                <FontAwesomeIcon icon={faClock} />
+              </span>
+              Time
+            </th>
             <th className="tx-hash-column">
               <span className="table-header-icon">
-                <FontAwesomeIcon icon={faHandHoldingUsd} />
+                <FontAwesomeIcon icon={faHashtag} />
               </span>
               Hash
             </th>
@@ -37,12 +44,6 @@ export const TransactionTable = (transactions: any[], match: any) => {
                 <FontAwesomeIcon icon={faDollarSign} />
               </span>
               Fee
-            </th>
-            <th className="tx-size-column has-text-right">
-              <span className="table-header-icon">
-                <FontAwesomeIcon icon={faBalanceScale} />
-              </span>
-              Size
             </th>
           </tr>
         </thead>
@@ -63,15 +64,15 @@ export const TransactionTable = (transactions: any[], match: any) => {
                     <FontAwesomeIcon icon={faExpand} />
                   </Link>
                 </td>
+                <td className="tx-time-column">
+                  {new Date(tx.timestamp * 1000).toLocaleString()}
+                </td>
                 <td className="tx-hash-column">{tx.hash}</td>
                 <td className="tx-amount-column has-text-right">
                   {prettyPrint(tx.amount)}
                 </td>
                 <td className="tx-fee-column has-text-right">
                   {prettyPrint(tx.fee)}
-                </td>
-                <td className="tx-size-column has-text-right">
-                  {formatLikeCurrency(tx.size)}
                 </td>
               </tr>
             );

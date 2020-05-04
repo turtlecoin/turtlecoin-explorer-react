@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faExpand,
   faArrowAltCircleUp,
-  faCube,
   faClock,
+  faHashtag,
 } from '@fortawesome/free-solid-svg-icons';
 import { formatLikeCurrency } from '../Utils/prettyPrint';
 
@@ -27,7 +27,7 @@ export const BlockTable = (blocks: any[], match: any) => {
             </th>
             <th className="block-hash-column">
               <span className="table-header-icon">
-                <FontAwesomeIcon icon={faCube} />
+                <FontAwesomeIcon icon={faHashtag} />
               </span>
               Hash
             </th>

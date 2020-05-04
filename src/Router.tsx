@@ -40,7 +40,7 @@ class Root extends Component<Props, State> {
           <Route
             exact
             path={routes.home}
-            render={({ match }) => <Blocks match={match} />}
+            render={({ match }) => <Pointers match={match} />}
           />
           <Route
             path={routes.pointer}

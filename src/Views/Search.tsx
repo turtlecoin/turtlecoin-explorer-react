@@ -6,6 +6,8 @@ import { Breadcrumbs } from '../Components/Breadcrumbs';
 import { BlockTable } from '../Components/BlockTable';
 import { TransactionTable } from '../Components/TransactionTable';
 import { Footer } from '../Components/Footer';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type State = {
   results: any[];
@@ -81,15 +83,29 @@ export class Search extends Component<Props, State> {
         <Breadcrumbs match={match} />
         <main className="Site-content">
           <Searchbar query={match.params.query} />
-          {pointers && PointerTable(pointers, match)}
-          {blocks && BlockTable(blocks, match)}
-          {transactions && TransactionTable(transactions, match)}
-          {pointers &&
-            pointers.length === 0 &&
-            blocks &&
-            blocks.length === 0 &&
-            transactions &&
-            transactions.length === 0 && <p>No results found!</p>}
+          <div className="panel-wrapper">
+            <div className="panel">
+              <p className="panel-heading">
+                <span className="panel-heading-icon">
+                  <FontAwesomeIcon icon={faSearch} />
+                </span>
+                Search Results
+              </p>
+              {pointers && PointerTable(pointers, match)}
+              {blocks && BlockTable(blocks, match)}
+              {transactions && TransactionTable(transactions, match)}
+              {pointers &&
+                pointers.length === 0 &&
+                blocks &&
+                blocks.length === 0 &&
+                transactions &&
+                transactions.length === 0 && (
+                  <div className="message">
+                    <p className="message-body">No results found!</p>
+                  </div>
+                )}
+            </div>
+          </div>
         </main>
         <Footer />
       </div>
