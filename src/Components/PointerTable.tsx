@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExpand } from '@fortawesome/free-solid-svg-icons';
+import {
+  faExpand,
+  faLink,
+  faCodeBranch,
+  faClock,
+} from '@fortawesome/free-solid-svg-icons';
 
 export const PointerTable = (pointers: any[], match: any) => {
   if (pointers.length === 0 || !pointers) {
@@ -13,9 +18,24 @@ export const PointerTable = (pointers: any[], match: any) => {
         <thead>
           <tr>
             <th />
-            <th className="pointer-ascii-column">ASCII</th>
-            <th className="pointer-hex-column">Hex</th>
-            <th className="pointer-timestamp-column">Timestamp</th>
+            <th className="pointer-ascii-column">
+              <span className="table-header-icon">
+                <FontAwesomeIcon icon={faLink} />
+              </span>
+              Link
+            </th>
+            <th className="pointer-hex-column">
+              <span className="table-header-icon">
+                <FontAwesomeIcon icon={faCodeBranch} />
+              </span>
+              Hex
+            </th>
+            <th className="pointer-timestamp-column">
+              <span className="table-header-icon">
+                <FontAwesomeIcon icon={faClock} />
+              </span>
+              Time
+            </th>
           </tr>
         </thead>
         <tbody>

@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExpand } from '@fortawesome/free-solid-svg-icons';
+import {
+  faExpand,
+  faHandHoldingUsd,
+  faCoins,
+  faDollarSign,
+  faBalanceScale,
+} from '@fortawesome/free-solid-svg-icons';
 import { prettyPrint, formatLikeCurrency } from '../Utils/prettyPrint';
 
 export const TransactionTable = (transactions: any[], match: any) => {
@@ -14,10 +20,30 @@ export const TransactionTable = (transactions: any[], match: any) => {
         <thead>
           <tr>
             <th />
-            <th className="tx-hash-column">Hash</th>
-            <th className="tx-amount-column has-text-right">Amount</th>
-            <th className="tx-fee-column has-text-right">Fee</th>
-            <th className="tx-size-column has-text-right">Size</th>
+            <th className="tx-hash-column">
+              <span className="table-header-icon">
+                <FontAwesomeIcon icon={faHandHoldingUsd} />
+              </span>
+              Hash
+            </th>
+            <th className="tx-amount-column has-text-right">
+              <span className="table-header-icon">
+                <FontAwesomeIcon icon={faCoins} />
+              </span>
+              Amount
+            </th>
+            <th className="tx-fee-column has-text-right">
+              <span className="table-header-icon">
+                <FontAwesomeIcon icon={faDollarSign} />
+              </span>
+              Fee
+            </th>
+            <th className="tx-size-column has-text-right">
+              <span className="table-header-icon">
+                <FontAwesomeIcon icon={faBalanceScale} />
+              </span>
+              Size
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -25,8 +51,6 @@ export const TransactionTable = (transactions: any[], match: any) => {
             if (tx.fee < 0) {
               tx.fee = 0;
             }
-
-            console.log(typeof tx.amount);
 
             return (
               <tr key={tx.hash}>
@@ -43,8 +67,12 @@ export const TransactionTable = (transactions: any[], match: any) => {
                 <td className="tx-amount-column has-text-right">
                   {prettyPrint(tx.amount)}
                 </td>
-                <td className="tx-fee-column has-text-right">{prettyPrint(tx.fee)}</td>
-                <td className="tx-size-column has-text-right">{formatLikeCurrency(tx.size)}</td>
+                <td className="tx-fee-column has-text-right">
+                  {prettyPrint(tx.fee)}
+                </td>
+                <td className="tx-size-column has-text-right">
+                  {formatLikeCurrency(tx.size)}
+                </td>
               </tr>
             );
           })}

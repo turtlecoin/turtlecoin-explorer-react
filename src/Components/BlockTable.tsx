@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExpand } from '@fortawesome/free-solid-svg-icons';
+import {
+  faExpand,
+  faArrowAltCircleUp,
+  faCube,
+  faClock,
+} from '@fortawesome/free-solid-svg-icons';
 import { formatLikeCurrency } from '../Utils/prettyPrint';
 
 export const BlockTable = (blocks: any[], match: any) => {
@@ -14,9 +19,24 @@ export const BlockTable = (blocks: any[], match: any) => {
         <thead>
           <tr>
             <th />
-            <th className="block-height-column">Height</th>
-            <th className="block-hash-column">Hash</th>
-            <th className="block-timestamp-column">Timestamp</th>
+            <th className="block-height-column">
+              <span className="table-header-icon">
+                <FontAwesomeIcon icon={faArrowAltCircleUp} />
+              </span>
+              Height
+            </th>
+            <th className="block-hash-column">
+              <span className="table-header-icon">
+                <FontAwesomeIcon icon={faCube} />
+              </span>
+              Hash
+            </th>
+            <th className="block-timestamp-column">
+              <span className="table-header-icon">
+                <FontAwesomeIcon icon={faClock} />
+              </span>
+              Time
+            </th>
           </tr>
         </thead>
         <tbody>

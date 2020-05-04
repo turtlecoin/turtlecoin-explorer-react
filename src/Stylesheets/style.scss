@@ -225,6 +225,10 @@ a:hover {
   padding-top: 20px;
 }
 
+.top-pad {
+  padding-top: 20px;
+}
+
 .brand-link {
   @media screen and (prefers-color-scheme: dark) {
     color: $red !important;
@@ -235,4 +239,16 @@ a:hover {
   @media screen and (prefers-color-scheme: dark) {
     color: $white-text !important;
   }
+}
+
+.table-header-icon {
+  padding-right: 1ch;
+}
+
+.panel-heading-icon {
+  padding-right: 1.5ch;
+}
+
+.panel-wrapper {
+  padding-top: 10px;
 }

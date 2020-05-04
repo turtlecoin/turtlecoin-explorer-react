@@ -1,4 +1,4 @@
-export function prettyPrint(amount: string, decimals: number = 2) {
+export function prettyPrint(amount: string | number, decimals: number = 2) {
   let prettyValue = formatLikeCurrency(atomicToHuman(Number(amount), decimals));
   return prettyValue;
 }
