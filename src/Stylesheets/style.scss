@@ -131,7 +131,7 @@ a:hover {
 
 .table tr:hover {
   @media screen and (prefers-color-scheme: dark) {
-    background-color: darken($black, 5%) !important;
+    background-color: darken($black, 4%) !important;
   }
 }
 
@@ -168,7 +168,7 @@ a:hover {
 
 .navbar-item:hover {
   @media screen and (prefers-color-scheme: dark) {
-    background-color: darken($black, 3%) !important;
+    background-color: darken($black, 4%) !important;
     color: #fff !important;
   }
 }
@@ -251,4 +251,31 @@ a:hover {
 
 .panel-wrapper {
   padding-top: 10px;
+}
+
+.panel-heading {
+  @media screen and (prefers-color-scheme: dark) {
+    background-color: darken($black, 4%);
+    color: $white-text !important;
+  }
+}
+
+.panel-label,
+.panel-icon,
+.panel-value {
+  @media screen and (prefers-color-scheme: dark) {
+    color: $white-text !important;
+  }
+}
+
+.panel {
+  @media screen and (prefers-color-scheme: dark) {
+    box-shadow: 0 0.5em 1em -0.125em #000, 0 0px 0 1px #000;
+  }
+}
+
+.panel-block:hover {
+  @media screen and (prefers-color-scheme: dark) {
+    background-color: darken($black, 2%);
+  }
 }

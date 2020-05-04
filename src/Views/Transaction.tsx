@@ -112,8 +112,8 @@ class Transaction extends Component<Props, State> {
                     <span className="panel-value">
                       <a href={`/search/${row.payment_id}`}>
                         {windowDimensions.width > 1023
-                          ? row.block
-                          : row.block.slice(0, 10)}
+                          ? row.payment_id
+                          : row.payment_id.slice(0, 10)}
                       </a>
                     </span>
                   </div>
