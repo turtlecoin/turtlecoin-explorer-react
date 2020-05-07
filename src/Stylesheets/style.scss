@@ -279,7 +279,7 @@ a:hover {
 
 .panel-block:hover {
   @media screen and (prefers-color-scheme: dark) {
-    background-color: darken($black, 4%);
+    background-color: lighten($black, 1%);
   }
 }
 
